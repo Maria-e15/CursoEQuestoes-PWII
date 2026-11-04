@@ -12,22 +12,49 @@
     <main class="container mt-5">
         <h1 class="mb-4">Aula 1</h1>
 
-        <h3> Teoria da Probabilidade e Experimento Aleatório: A teoria da probabilidade é o campo da Matemática que estuda experimentos ou fenômenos aleatórios. Através dela, é possível analisar as chances de um determinado evento ocorrer.
-Um experimento aleatório é aquele cujo resultado não pode ser conhecido antes de sua realização. Quando calculamos a probabilidade, estamos associando um grau de confiança à ocorrência dos resultados possíveis de experimentos cujos resultados não podem ser determinados antecipadamente. Assim, a probabilidade é a medida da chance de algo acontecer.
-Um exemplo clássico de experimento aleatório é jogar um dado para o alto. Ao cair, não é possível prever com total certeza qual das 6 faces estará voltada para cima.
-Espaço Amostral (Ω) e Cardinalidade
-Definição de Espaço Amostral: O espaço amostral é o conjunto de todos os resultados possíveis obtidos a partir de um experimento aleatório. Representa-se o espaço amostral pelo símbolo Ω.
-Exemplos Práticos: Exemplos de Espaços Amostrais em Experimentos Aleatórios:
-• Lançamento de um dado: O espaço amostral é composto pelas seis faces que o compõem: Ω = {1, 2, 3, 4, 5, 6}.
-• Lançamento de uma moeda: O espaço amostral contém dois resultados possíveis: Ω = {cara, coroa}.
-• Retirada de uma carta de baralho: O espaço amostral corresponde às 52 cartas que compõem o baralho.
-Cardinalidade: A quantidade de elementos em um conjunto chama-se cardinalidade, expressa pela letra n seguida do símbolo do conjunto entre parênteses. Assim, a cardinalidade do espaço amostral do lançamento de um dado é n(Ω) = 6. Já no lançamento de uma moeda, a cardinalidade é n(Ω) = 2.
-Pontos Amostrais e Espaço Equiprovável: Cada um dos resultados possíveis é chamado de ponto amostral do conjunto universo. Se cada um dos pontos amostrais possuir a mesma probabilidade de ocorrer, dizemos que este espaço amostral é equiprovável.
-Exemplo da Urna: Exemplo de Espaço Equiprovável: Considere uma urna com 4 esferas de mesmo tamanho e de cores diferentes: amarela, azul, preta e branca. Ao sortear uma esfera ao acaso, sendo o experimento honesto, todas as cores possuem a mesma chance de serem sorteadas (25% cada).
-</h3>
+        <h1>Conceitos Básicos da Probabilidade</h3>
 
-        <a href="aula2.php" class="btn btn-primary mt-3">
-            Próxima aula
+        <h3> <strong>Teoria da Probabilidade e Experimento Aleatório:</strong> 
+        A teoria da probabilidade é o campo da Matemática que estuda experimentos ou fenômenos aleatórios. Através dela, é possível analisar as chances de um determinado evento ocorrer.
+        <br><br>
+        Um experimento aleatório é aquele cujo resultado não pode ser conhecido antes de sua realização. Quando calculamos a probabilidade, estamos associando um grau de confiança à ocorrência dos resultados possíveis de experimentos cujos resultados não podem ser determinados antecipadamente. Assim, a probabilidade é a medida da chance de algo acontecer. 
+        <br><br>
+        Um exemplo clássico de experimento aleatório é jogar um dado para o alto. Ao cair, não é possível prever com total certeza qual das 6 faces estará voltada para cima.
+        <br><br>
+        <strong>Espaço Amostral (Ω) e Cardinalidade</strong>
+        <br><br>
+        <strong>Definição de Espaço Amostral:</strong> 
+        O espaço amostral é o conjunto de todos os resultados possíveis obtidos a partir de um experimento aleatório. Representa-se o espaço amostral pelo símbolo Ω.
+        <br><br>
+        <strong>Exemplos Práticos:</strong>
+        <br><br>
+        Exemplos de Espaços Amostrais em Experimentos Aleatórios:<br>
+        • Lançamento de um dado: O espaço amostral é composto pelas seis faces que o compõem: Ω = {1, 2, 3, 4, 5, 6}.<br>
+        • Lançamento de uma moeda: O espaço amostral contém dois resultados possíveis: Ω = {cara, coroa}.<br>
+        • Retirada de uma carta de baralho: O espaço amostral corresponde às 52 cartas que compõem o baralho.<br><br>
+        <strong>Cardinalidade:</strong> 
+        A quantidade de elementos em um conjunto chama-se cardinalidade, expressa pela letra n seguida do símbolo do conjunto entre parênteses. Assim, a cardinalidade do espaço amostral do lançamento de um dado é n(Ω) = 6. Já no lançamento de uma moeda, a cardinalidade é n(Ω) = 2.<br><br>
+        <strong>Pontos Amostrais e Espaço Equiprovável:</strong>
+         Cada um dos resultados possíveis é chamado de ponto amostral do conjunto universo. Se cada um dos pontos amostrais possuir a mesma probabilidade de ocorrer, dizemos que este espaço amostral é equiprovável.<br><br>
+        <strong>Exemplo da Urna:</strong>
+         Exemplo de Espaço Equiprovável: Considere uma urna com 4 esferas de mesmo tamanho e de cores diferentes: amarela, azul, preta e branca. Ao sortear uma esfera ao acaso, sendo o experimento honesto, todas as cores possuem a mesma chance de serem sorteadas (25% cada).<br>
+        </h3>
+
+        <img src= "imgs/imagem1.png" alt= "Figura 1: Representação gráfica do Espaço Amostral (Ω) e do Evento (A)."><br><br>
+
+        <h3><strong>Eventos na Probabilidade</strong><br><br>
+        <strong>Definição de Evento:</strong> Uma vez definidos o experimento aleatório e o espaço amostral, para calcular uma probabilidade é preciso fazer uma pergunta. Esta pergunta define o conceito de evento.<br>
+        Evento é qualquer subconjunto do espaço amostral de um experimento aleatório.<br><br>
+        <strong>Exemplo de Evento:</strong> No lançamento de um dado de seis faces, se perguntarmos 'Qual a probabilidade de sair um número par?', o conjunto evento será A = {2, 4, 6}, com cardinalidade n(A) = 3.<br><br>
+        <strong>Tipos Especiais de Eventos</strong><br><br>
+        <strong>1. Evento Certo:</strong> O conjunto do evento é exatamente igual ao espaço amostral, ou seja, possuem os mesmos elementos (chance de ocorrência de 100%). Exemplo: Em uma delegação feminina de atletas, sortear uma pessoa ao acaso e ela ser mulher.<br>
+        <strong>2. Evento Impossível:</strong> O conjunto do evento é vazio (chance de ocorrência de 0%). Exemplo: Imagine uma caixa com bolas numeradas de 1 a 20 e todas vermelhas. O evento 'tirar uma bola com número maior que 30' é impossível.<br>
+        <strong>3. Evento Complementar:</strong> Dois eventos cujos conjuntos formam, juntos, todo o espaço amostral. Exemplo: No lançamento de uma moeda com Ω = {cara, coroa}, se o evento A for 'sair cara' (A = {cara}), o evento B 'sair coroa' (B = {coroa}) é complementar ao evento A.<br>
+        <strong>4. Eventos Mutuamente Exclusivos:</strong> Os conjuntos dos eventos não possuem elementos em comum; a intersecção entre eles é vazia (A ∩ B = ∅). Exemplo: No lançamento de um dado, os eventos A ('ocorrer número menor que 5', A = {1, 2, 3, 4}) e B ('ocorrer número maior que 5', B = {6}) são mutuamente exclusivos.
+        </h3><br><br>
+
+        <a href="questoes.php?aula=1" class="btn btn-primary">
+        Responder exercícios
         </a>
     </main>
 

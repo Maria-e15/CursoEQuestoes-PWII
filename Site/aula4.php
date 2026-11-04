@@ -12,10 +12,10 @@
     <main class="container mt-5">
         <h1 class="mb-4">Aula 4</h1>
 
-        <!-- Conteúdo da aula aqui -->
+        <h3>***conteúdo da aula</h3>
 
-        <a href="aula5.php" class="btn btn-primary mt-3">
-            Próxima aula
+        <a href="questoes.php?aula=4" class="btn btn-primary">
+        Responder exercícios
         </a>
     </main>
 
