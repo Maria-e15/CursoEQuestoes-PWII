@@ -75,7 +75,7 @@ if (count($questoes) < 3) {
                         Questão <?php echo $indice + 1; ?>
                     </h5>
 
-                    <p>
+                    <p style = "text-align: justify;">
                         <?php echo htmlspecialchars($questao['enunciado']); ?>
                     </p>
 
@@ -85,7 +85,7 @@ if (count($questoes) < 3) {
 
                     <?php foreach ($alternativas as $letra): ?>
 
-                        <div class="form-check mb-2">
+                        <div class="form-check mb-2" style = "text-align: justify;">
 
                             <input
                                 class="form-check-input"
