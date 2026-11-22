@@ -7,17 +7,17 @@ $liberar_avaliacao_para_teste = false;
 
 // As cinco aulas (cada uma abre o arquivo aulaN.php)
 $aulas = [
-    1 => 'Conceitos básicos',
-    2 => 'Conceitos básicos',
-    3 => 'Conceitos básicos',
-    4 => 'Conceitos básicos',
-    5 => 'Conceitos básicos',
+    1 => ['titulo' => 'Probabilidade:', 'subtitulo' => 'Conceitos básicos'],
+    2 => ['titulo' => 'Fórmula:',       'subtitulo' => 'Cálculo da probabilidade'],
+    3 => ['titulo' => 'Probabilidade:', 'subtitulo' => 'União de dois eventos'],
+    4 => ['titulo' => 'Probabilidade:', 'subtitulo' => 'Intersecção'],
+    5 => ['titulo' => 'Conceito final:', 'subtitulo' => 'Probabilidade condicional'],
 ];
 
 // Aulas concluídas (marcadas em corrigir.php) e a próxima a assistir
 $concluidas = 0;
 $proxima = 0;
-foreach ($aulas as $numero => $titulo) {
+foreach ($aulas as $numero => $aula) {
     if (!empty($_SESSION['aula_concluida_' . $numero])) {
         $concluidas++;
     } elseif ($proxima === 0) {
@@ -80,7 +80,7 @@ $avaliacao_liberada = $liberar_avaliacao_para_teste || ($concluidas === count($a
                     </svg>
 
                     <div class="lista">
-                        <?php foreach ($aulas as $numero => $titulo): ?>
+                        <?php foreach ($aulas as $numero => $aula): ?>
                             <section class="aula<?php echo $numero === $proxima ? ' atual' : ''; ?>">
                                 <a class="aula-botao" href="aula<?php echo $numero; ?>.php"
                                    aria-label="Assistir à aula <?php echo $numero; ?>">
@@ -90,8 +90,8 @@ $avaliacao_liberada = $liberar_avaliacao_para_teste || ($concluidas === count($a
                                 </a>
                                 <div class="aula-rotulo">Aula <span><?php echo str_pad($numero, 2, '0', STR_PAD_LEFT); ?>.</span></div>
                                 <div class="aula-titulo">
-                                    Probabilidade:
-                                    <span><?php echo htmlspecialchars($titulo); ?></span>
+                                    <?php echo htmlspecialchars($aula['titulo']); ?>
+                                    <span><?php echo htmlspecialchars($aula['subtitulo']); ?></span>
                                 </div>
                             </section>
                         <?php endforeach; ?>

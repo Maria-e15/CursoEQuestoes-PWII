@@ -257,7 +257,7 @@ a:focus-visible { outline: 3px solid #ffb703; outline-offset: 4px; }
     color: var(--navy);
     white-space: nowrap;
 }
-.aula-titulo span { display: block; font-size: 25.8px; font-weight: 500; color: var(--azul); }
+.aula-titulo span { display: block; max-width: 330px; white-space: normal; font-size: 25.8px; font-weight: 500; color: var(--azul); }
 
 .final { position: relative; padding: 32px 0 44px; text-align: center; }
 
