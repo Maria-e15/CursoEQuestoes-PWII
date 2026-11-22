@@ -413,3 +413,92 @@ a.btn-final:hover { background: var(--btn-escuro); }
 .ref-curva { position: relative; z-index: 5; display: block; width: 402px; height: 70px; margin-top: -1px; flex: 0 0 auto; }
 .ref-rodape { position: relative; z-index: 5; flex: 1 0 auto; min-height: 131px; }
 .referencias .barra { top: 245px; }
+
+
+/* ================= TELA 5 · INÍCIO DA AVALIAÇÃO (startAvaliacao.php) ================= */
+.aval .bolha { transform-box: fill-box; }
+.aval .bolha-a { animation: flutuar-a 17s ease-in-out infinite; }
+.aval .bolha-b { animation: flutuar-b 21s ease-in-out infinite; }
+@keyframes flutuar-a {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33%      { transform: translate(22px, -26px) rotate(4deg); }
+    66%      { transform: translate(-6px, 30px) rotate(-3deg); }
+}
+@keyframes flutuar-b {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    33%      { transform: translate(-26px, 20px) rotate(-4deg); }
+    66%      { transform: translate(12px, -28px) rotate(3deg); }
+}
+
+.titulo-aval {
+    position: absolute;
+    top: 110px; left: 39px;
+    padding-left: 8px;
+    border-left: 3px solid var(--navy);
+    font-family: 'Lexend Exa', 'Lexend', sans-serif;
+    font-size: 33px;
+    line-height: 39px;
+    font-weight: 700;
+    color: var(--navy);
+    text-shadow: 0 3px 3px rgba(0, 15, 71, .22);
+    white-space: nowrap;
+    z-index: 4;
+}
+.titulo-aval em { font-style: normal; color: var(--azul); }
+
+.cartao-aval {
+    position: absolute;
+    left: 40px; top: 266px;
+    width: 329px; height: 465px;
+    border-radius: 32px;
+    background: rgba(238, 237, 255, .88);
+    -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, .28);
+    z-index: 4;
+}
+.cartao-aval p { position: absolute; margin: 0; }
+
+.aval-intro {
+    left: 42px; top: 54px; width: 250px;
+    font-family: 'Lexend Exa', 'Lexend', sans-serif;
+    font-size: 15.8px; line-height: 18px; font-weight: 600;
+    color: var(--azul);
+}
+.aval-tempo {
+    left: 0; right: 13px; top: 110px;
+    text-align: center;
+    font-family: 'Lexend Exa', 'Lexend', sans-serif;
+    font-size: 38px; line-height: 44px; font-weight: 700;
+    color: var(--navy);
+}
+.aval-extenso {
+    left: 0; right: 13px; top: 150px;
+    text-align: center;
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 10px; line-height: 12px;
+    color: var(--azul);
+}
+.aval-aviso {
+    left: 42px; top: 186px;
+    white-space: nowrap;
+    font-family: 'Lexend Exa', 'Lexend', sans-serif;
+    font-size: 13.3px; line-height: 16.2px; font-weight: 600;
+    color: var(--azul);
+}
+.aval-aviso strong { font-weight: 700; color: var(--navy); }
+
+.aval-comecar, .aval-depois {
+    position: absolute;
+    left: 34px; width: 259px;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; text-decoration: none;
+    font-family: 'Lexend Exa', 'Lexend', sans-serif;
+    font-weight: 500;
+    transition: background .15s ease, transform .1s ease;
+}
+.aval-comecar { top: 294px; height: 74px; border-radius: 24px; background: var(--azul); font-size: 21px; }
+.aval-depois  { top: 381px; height: 46px; border-radius: 20px; background: var(--btn-final); font-size: 20.5px; }
+.aval-comecar:hover { background: var(--btn-escuro); }
+.aval-depois:hover  { background: var(--azul); }
+.aval-comecar:active, .aval-depois:active { transform: translateY(1px); }

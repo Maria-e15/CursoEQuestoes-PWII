@@ -98,7 +98,7 @@ $avaliacao_liberada = $liberar_avaliacao_para_teste || ($concluidas === count($a
 
                         <section class="final">
                             <?php if ($avaliacao_liberada): ?>
-                                <a class="btn-final" href="prova_final.php">
+                                <a class="btn-final" href="startAvaliacao.php">
                                     <img src="imgs/unlockedPadlock.png" alt="">
                                     <span>Avaliação<br>final</span>
                                 </a>
