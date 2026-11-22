@@ -113,8 +113,8 @@ $avaliacao_liberada = $liberar_avaliacao_para_teste || ($concluidas === count($a
                             <p>
                                 Responda corretamente ao<br>
                                 menos 7 questões das 10 totais<br>
-                                e finalize o curso Descomplicando<br>
-                                a Probabilidade.
+                                e finalize o curso InterseC de<br>
+                                Probabilidade.
                             </p>
 
                             <a class="link-ref" href="referencias.php">Referências</a>
