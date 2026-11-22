@@ -68,7 +68,7 @@ a:focus-visible { outline: 3px solid #ffb703; outline-offset: 4px; }
 .simbolos::before {
     content: '';
     position: absolute;
-    width: 5016px; height: 2823px;           /* 3 x 3 repetições da imagem 1672x941 */
+    width: 5016px; height: 4705px;           /* 3 colunas x 5 linhas da imagem 1672x941 */
     left: -1797px; top: -1168px;
     background: url('../imgs/simbolos.png') 0 0 / 1672px 941px repeat;
     transform-origin: 1672px 1882px;
@@ -102,7 +102,8 @@ a:focus-visible { outline: 3px solid #ffb703; outline-offset: 4px; }
 
 .intro {
     position: absolute;
-    top: 306px; left: 33px;
+    top: 306px; left: 50%;
+    transform: translateX(-50%);
     white-space: nowrap;
     font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
     font-size: 14.5px;
@@ -180,14 +181,7 @@ a:focus-visible { outline: 3px solid #ffb703; outline-offset: 4px; }
 .titulo-menu strong { font-weight: 700; color: var(--navy); }
 
 .texto-curvo { position: absolute; top: 0; left: 0; width: 402px; height: 874px; z-index: 4; pointer-events: none; }
-.texto-curvo text { font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; font-size: 21px; font-weight: 500; fill: var(--azul); }
-
-.tracejado {
-    position: absolute;
-    left: 272px; top: 458px; height: 132px;
-    border-left: 1.5px dashed var(--azul);
-    z-index: 4;
-}
+.texto-curvo text { white-space: pre; font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; font-size: 21px; font-weight: 500; fill: var(--azul); }
 
 /* ---------- página rolável do menu ---------- */
 .pagina {
@@ -329,3 +323,93 @@ a.btn-final:hover { background: var(--btn-escuro); }
 .barra .polegar:active { cursor: grabbing; }
 
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+
+/* ---------- botão voltar (seta) ---------- */
+.btn-voltar { position: absolute; display: block; z-index: 6; }
+.btn-voltar img { display: block; width: 100%; height: auto; }
+
+/* ================= TELA 3 · SOBRE ================= */
+.sobre .pagina-conteudo {
+    overflow: hidden;
+    background: linear-gradient(#D4D1FE 0%, #E1DFFF 40%, #F5F5FE 100%);
+}
+.sobre .simbolos-sobre {
+    -webkit-mask-image: linear-gradient(transparent 20%, #000 42%);
+            mask-image: linear-gradient(transparent 20%, #000 42%);
+}
+.sobre .simbolos-sobre::before { top: -1168px; }
+.sobre .barra { top: 328px; }
+.sobre .onda-topo { width: 434px; height: 266px; left: -16px; top: 0; }
+.sobre .simbolos-sobre { opacity: .75; }
+.sobre .simbolos::before { transform: rotate(-38.4deg) scale(.64); }
+
+.sobre-conteudo { position: relative; z-index: 5; padding: 180px 0 72px; }
+
+.sobre .bloco { margin-bottom: 72px; }
+.sobre .bloco:last-child { margin-bottom: 0; }
+
+.titulo-bloco {
+    margin: 0 0 30px 33px;
+    padding-left: 10px;
+    border-left: 3px solid var(--azul);
+    font-family: 'Lexend Exa', 'Lexend', sans-serif;
+    font-size: 34px;
+    line-height: 39px;
+    font-weight: 700;
+    color: var(--navy);
+    text-shadow: 0 3px 3px rgba(0, 15, 71, .22);
+    white-space: nowrap;
+}
+.titulo-bloco.menor { font-size: 34px; line-height: 41px; }
+.titulo-bloco em { font-style: normal; color: var(--azul); }
+
+.texto-bloco {
+    margin: 0 27px 0 32px;
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 19.2px;
+    color: var(--navy);
+}
+
+/* ================= TELA 4 · REFERÊNCIAS ================= */
+.referencias .pagina-conteudo { display: flex; flex-direction: column; }
+.referencias .simbolos { position: absolute; }
+
+.ref-corpo {
+    position: relative; z-index: 5;
+    padding: 112px 0 41px;
+    /* o gradiente tem tamanho fixo; se houver mais referências, o lavanda só se estende */
+    background: linear-gradient(#fff 0, #D4D1FE 450px, #D4D1FE 100%);
+}
+.titulo-ref {
+    margin: 0 0 62px 28px;
+    padding-left: 7px;
+    border-left: 3px solid var(--azul);
+    width: 285px;
+    font-family: 'Lexend Exa', 'Lexend', sans-serif;
+    font-size: 34px;
+    line-height: 42.5px;
+    font-weight: 700;
+    color: var(--navy);
+    text-shadow: 0 3px 3px rgba(0, 15, 71, .22);
+    white-space: nowrap;
+}
+.titulo-ref em { font-style: normal; color: var(--azul); }
+
+.lista-refs {
+    margin: 0 42px 0 28px;
+    padding-left: 20px;
+    list-style: disc;
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 16px;
+    line-height: 19.2px;
+    color: var(--navy);
+}
+.lista-refs li { margin-bottom: 8px; }
+.lista-refs li:last-child { margin-bottom: 0; }
+.lista-refs li::marker { font-size: 14px; }
+
+.ref-curva { position: relative; z-index: 5; display: block; width: 402px; height: 70px; margin-top: -1px; flex: 0 0 auto; }
+.ref-rodape { position: relative; z-index: 5; flex: 1 0 auto; min-height: 131px; }
+.referencias .barra { top: 245px; }

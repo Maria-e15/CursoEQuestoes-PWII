@@ -76,9 +76,8 @@ $avaliacao_liberada = $liberar_avaliacao_para_teste || ($concluidas === count($a
                         <defs>
                             <path id="arco" d="M-12,492 C-10.0,491.7 -12.0,492.3 0.0,490.0 C12.0,487.7 41.7,485.0 60.0,478.0 C78.3,471.0 93.3,456.8 110.0,448.0 C126.7,439.2 140.8,430.7 160.0,425.0 C179.2,419.3 205.0,414.0 225.0,414.0 C245.0,414.0 260.8,418.7 280.0,425.0 C299.2,431.3 319.7,443.2 340.0,452.0 C360.3,460.8 387.0,471.7 402.0,478.0 C417.0,484.3 425.3,488.0 430.0,490.0"/>
                         </defs>
-                        <text><textPath href="#arco">vídeo aulas • material didático • certificado • vídeo aulas</textPath></text>
+                        <text><textPath id="tp" href="#arco" data-texto="vídeo aulas • material didático • avaliação final • ">vídeo aulas • material didático • avaliação final • </textPath></text>
                     </svg>
-                    <span class="tracejado" aria-hidden="true"></span>
 
                     <div class="lista">
                         <?php foreach ($aulas as $numero => $titulo): ?>
@@ -132,6 +131,7 @@ $avaliacao_liberada = $liberar_avaliacao_para_teste || ($concluidas === count($a
     </div>
     <script src="style/escala.js"></script>
     <script src="style/scrollbar.js"></script>
+    <script src="style/curva.js"></script>
 </body>
 
 </html>

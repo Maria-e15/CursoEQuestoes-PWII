@@ -19,6 +19,7 @@
 
     function atualizar() {
         var m = medidas();
+        barra.style.display = m.max > 0 ? '' : 'none';
         var p = m.max > 0 ? pagina.scrollTop / m.max : 0;
         polegar.style.height = ALTURA + 'px';
         polegar.style.top = (1 + p * m.curso) + 'px';
