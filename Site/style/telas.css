@@ -1,0 +1,331 @@
+/* =========================================================
+   InterseC · telas inicial (index.html) e menu (menu.php)
+   Base: iPhone 17  →  402 x 874 px
+   Cores:  azul 3C51A2 · navy 000F47 · lavanda D4D1FE
+   ========================================================= */
+
+@font-face { font-family: 'Lexend'; font-weight: 400; font-display: swap; src: url('../fonts/lexend-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Lexend'; font-weight: 500; font-display: swap; src: url('../fonts/lexend-latin-500-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Lexend'; font-weight: 600; font-display: swap; src: url('../fonts/lexend-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Lexend'; font-weight: 700; font-display: swap; src: url('../fonts/lexend-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Lexend Exa'; font-weight: 500; font-display: swap; src: url('../fonts/lexend-exa-latin-500-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Lexend Exa'; font-weight: 600; font-display: swap; src: url('../fonts/lexend-exa-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Lexend Exa'; font-weight: 700; font-display: swap; src: url('../fonts/lexend-exa-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Inter'; font-weight: 400; font-display: swap; src: url('../fonts/inter-latin-400-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Inter'; font-weight: 500; font-display: swap; src: url('../fonts/inter-latin-500-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Saira Condensed'; font-weight: 600; font-display: swap; src: url('../fonts/saira-condensed-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Saira Condensed'; font-weight: 700; font-display: swap; src: url('../fonts/saira-condensed-latin-700-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Saira Extra Condensed'; font-weight: 600; font-display: swap; src: url('../fonts/saira-extra-condensed-latin-600-normal.woff2') format('woff2'); }
+@font-face { font-family: 'Saira Extra Condensed'; font-weight: 700; font-display: swap; src: url('../fonts/saira-extra-condensed-latin-700-normal.woff2') format('woff2'); }
+
+:root {
+    --azul: #3C51A2;
+    --navy: #000F47;
+    --lavanda: #D4D1FE;
+    --btn-escuro: #111E4C;
+    --btn-final: #152250;
+    --trilho: #11132F;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+    background: #ebeafb;
+    font-family: 'Lexend', 'Segoe UI', Arial, sans-serif;
+    color: var(--navy);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow: hidden;
+}
+
+/* A tela de 402x874 é escalada para caber em qualquer janela */
+.moldura { position: relative; flex: 0 0 auto; width: 402px; height: 874px; }
+
+.tela {
+    position: absolute;
+    top: 0; left: 0;
+    width: 402px;
+    height: 874px;
+    overflow: hidden;
+    background: #fff;
+    transform-origin: top left;
+}
+
+a { color: inherit; }
+a:focus-visible { outline: 3px solid #ffb703; outline-offset: 4px; }
+
+/* ---------- camada 1: símbolos matemáticos (girados, como no design) ---------- */
+.simbolos {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+}
+.simbolos::before {
+    content: '';
+    position: absolute;
+    width: 5016px; height: 2823px;           /* 3 x 3 repetições da imagem 1672x941 */
+    left: -1797px; top: -1168px;
+    background: url('../imgs/simbolos.png') 0 0 / 1672px 941px repeat;
+    transform-origin: 1672px 1882px;
+    transform: rotate(-38.4deg) scale(.56);
+}
+
+/* ---------- camada 2: gradiente (svg) ---------- */
+.fundo-svg { position: absolute; inset: 0; width: 402px; height: 874px; z-index: 1; }
+
+/* ================= TELA 1 · INICIAL ================= */
+.onda-topo { position: absolute; top: -14px; left: 0; width: 410px; height: auto; z-index: 3; pointer-events: none; }
+
+.logo-curso {
+    position: absolute;
+    left: 150px; top: 87px;
+    width: 97px; height: auto;
+    z-index: 4;
+}
+
+.nome-curso {
+    position: absolute;
+    top: 225px; left: -12px; width: 402px;
+    text-align: center;
+    font-family: 'Lexend Exa', 'Lexend', sans-serif;
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--azul);
+    text-shadow: 0 4px 4px rgba(0, 15, 71, .25);
+    z-index: 4;
+}
+
+.intro {
+    position: absolute;
+    top: 306px; left: 33px;
+    white-space: nowrap;
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 14.5px;
+    line-height: 19.2px;
+    font-weight: 400;
+    text-align: left;
+    color: var(--navy);
+    z-index: 4;
+}
+
+.btn-comecar {
+    position: absolute;
+    top: 674px; left: 33px;
+    width: 328px; height: 90px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 28px;
+    background: var(--azul);
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Lexend Exa', 'Lexend', sans-serif;
+    font-size: 26px;
+    font-weight: 600;
+    box-shadow: 0 6px 10px rgba(0, 15, 71, .35);
+    z-index: 4;
+}
+.btn-comecar:active { transform: translateY(1px); }
+
+.link-sobre {
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    position: absolute;
+    top: 797px; left: 0; width: 402px;
+    text-align: center;
+    font-size: 19px;
+    font-weight: 400;
+    color: var(--azul);
+    z-index: 4;
+}
+.link-sobre a { text-decoration: underline; text-underline-offset: 3px; }
+
+/* ================= TELA 2 · MENU ================= */
+.menu .onda-menu { position: absolute; width: 610px; left: -144px; top: -84px; height: auto; z-index: 3; pointer-events: none; }
+
+.pilula {
+    position: absolute;
+    top: 95px; left: 52px;
+    width: 295px; height: 59px;
+    display: flex; align-items: center;
+    padding-left: 23px;
+    gap: 33px;
+    border-radius: 30px;
+    background: var(--azul);
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Lexend Exa', 'Lexend', sans-serif;
+    font-size: 20px;
+    font-weight: 500;
+    z-index: 4;
+}
+.pilula img { width: 43px; height: auto; filter: brightness(0) invert(1); }
+
+.titulo-menu {
+    position: absolute;
+    top: 228px; left: 33px;
+    padding-left: 12px;
+    border-left: 3px solid var(--azul);
+    font-family: 'Lexend', sans-serif;
+    font-size: 40px;
+    line-height: 41px;
+    font-weight: 700;
+    color: var(--azul);
+    text-shadow: 0 3px 3px rgba(0, 15, 71, .22);
+    white-space: nowrap;
+    z-index: 4;
+}
+.titulo-menu strong { font-weight: 700; color: var(--navy); }
+
+.texto-curvo { position: absolute; top: 0; left: 0; width: 402px; height: 874px; z-index: 4; pointer-events: none; }
+.texto-curvo text { font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif; font-size: 21px; font-weight: 500; fill: var(--azul); }
+
+.tracejado {
+    position: absolute;
+    left: 272px; top: 458px; height: 132px;
+    border-left: 1.5px dashed var(--azul);
+    z-index: 4;
+}
+
+/* ---------- página rolável do menu ---------- */
+.pagina {
+    position: absolute;
+    inset: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    z-index: 1;
+}
+.pagina::-webkit-scrollbar { display: none; }
+
+.pagina-conteudo { position: relative; width: 402px; min-height: 874px; background: #fff; }
+
+/* área lavanda abaixo da curva: gradiente até o fim da página */
+.lavanda-corpo {
+    position: absolute;
+    left: 0; right: 0; top: 520px; bottom: 0;
+    background: linear-gradient(#D4D1FE 0%, #D1CEFF 45%, #F5F5FE 100%);
+}
+.menu .fundo-svg { height: 874px; }
+
+/* símbolos que aparecem suavemente sobre o lavanda, mais perto do fim */
+.menu .simbolos::before { transform: rotate(-38.4deg) scale(.78); }
+.simbolos-sobre {
+    inset: 0;
+    mix-blend-mode: multiply;
+    -webkit-mask-image: linear-gradient(transparent 60%, #000 85%);
+            mask-image: linear-gradient(transparent 60%, #000 85%);
+}
+.simbolos-sobre::before { top: -68px; }
+
+.lista { position: relative; padding-top: 590px; z-index: 5; }
+
+.aula { position: relative; height: 238px; }
+
+.aula-botao {
+    position: absolute;
+    top: 0; left: 25px;
+    width: 173px; height: 99px;
+    display: grid; place-items: center;
+    border-radius: 17px;
+    background: var(--azul);
+    box-shadow: 0 4px 6px rgba(0, 15, 71, .25);
+    text-decoration: none;
+    transition: background .15s ease;
+}
+.aula.atual .aula-botao { background: var(--btn-escuro); }
+.aula-botao:hover { background: var(--btn-escuro); }
+.aula-botao svg { width: 62px; height: 62px; fill: #fff; margin-left: 4px; }
+
+.aula-rotulo {
+    position: absolute;
+    top: -2px; left: 196px; width: 122px;
+    text-align: right;
+    font-family: 'Saira Condensed', 'Arial Narrow', sans-serif;
+    font-weight: 700;
+    font-size: 47px;
+    line-height: 58px;
+    color: var(--azul);
+}
+.aula-rotulo span { display: block; color: var(--navy); font-size: 52px; letter-spacing: .05em; margin-right: -.05em; }
+
+.aula-titulo {
+    position: absolute;
+    top: 118px; left: 25px;
+    padding-left: 8px;
+    border-left: 2px solid var(--azul);
+    font-family: 'Lexend Exa', 'Lexend', sans-serif;
+    font-size: 24.5px;
+    line-height: 31px;
+    font-weight: 700;
+    color: var(--navy);
+    white-space: nowrap;
+}
+.aula-titulo span { display: block; font-size: 25.8px; font-weight: 500; color: var(--azul); }
+
+.final { position: relative; padding: 32px 0 44px; text-align: center; }
+
+.btn-final {
+    display: flex; align-items: center; justify-content: center;
+    gap: 20px;
+    width: 296px; height: 92px;
+    margin: 0 auto;
+    border-radius: 24px;
+    background: var(--btn-final);
+    box-shadow: 0 4px 6px rgba(0, 15, 71, .25);
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Lexend Exa', 'Lexend', sans-serif;
+    font-size: 24.6px;
+    font-weight: 500;
+    line-height: 30px;
+    text-align: left;
+}
+.btn-final img { width: 34px; height: auto; flex: 0 0 auto; }
+.btn-final.bloqueado { cursor: not-allowed; }
+a.btn-final:hover { background: var(--btn-escuro); }
+
+.final p {
+    margin: 18px 0 0 53px;
+    white-space: nowrap;
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 17.5px;
+    line-height: 23px;
+    font-weight: 400;
+    text-align: left;
+    color: var(--azul);
+}
+
+.final .link-ref {
+    display: inline-block;
+    margin-top: 38px;
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 22px;
+    color: var(--azul);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+/* ---------- barra de rolagem personalizada (acompanha o conteúdo) ---------- */
+.barra {
+    position: absolute;
+    top: 590px; bottom: 0; left: 389px;
+    width: 11px;
+    border-radius: 5px;
+    background: var(--trilho);
+    z-index: 6;
+    touch-action: none;
+}
+.barra .polegar {
+    position: absolute;
+    left: 1px; top: 1px;
+    width: 9px; height: 100px;
+    border-radius: 4px;
+    background: linear-gradient(#fff, #D4D1FE);
+    cursor: grab;
+}
+.barra .polegar:active { cursor: grabbing; }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
