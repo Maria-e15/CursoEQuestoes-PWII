@@ -39,6 +39,7 @@ A avaliação tem como finalidade verificar a compreensão dos conceitos estudad
 - **HTML5** — estrutura das páginas.
 - **CSS3** — estilização e organização visual.
 - **Bootstrap 5** — estilização e organização visual.
+- **Java Script** - estilização e organização visual.
 
 ## 👥 Integrantes do grupo
 
