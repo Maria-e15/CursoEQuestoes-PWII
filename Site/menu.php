@@ -2,17 +2,9 @@
 
 session_start();
 
-/* Mude para true para ver a "Avaliação final" já liberada (cadeado aberto), como no design. */
-$liberar_avaliacao_para_teste = false;
-
-// As cinco aulas (cada uma abre o arquivo aulaN.php)
-$aulas = [
-    1 => ['titulo' => 'Probabilidade:', 'subtitulo' => 'Conceitos básicos'],
-    2 => ['titulo' => 'Fórmula:',       'subtitulo' => 'Cálculo da probabilidade'],
-    3 => ['titulo' => 'Probabilidade:', 'subtitulo' => 'União de dois eventos'],
-    4 => ['titulo' => 'Probabilidade:', 'subtitulo' => 'Intersecção'],
-    5 => ['titulo' => 'Conceito final:', 'subtitulo' => 'Probabilidade condicional'],
-];
+// Dados das aulas (config/aulas.php) e chaves de teste (config/ajustes.php)
+$aulas   = require __DIR__ . '/config/aulas.php';
+$ajustes = require __DIR__ . '/config/ajustes.php';
 
 // Aulas concluídas (marcadas em corrigir.php) e a próxima a assistir
 $concluidas = 0;
@@ -29,7 +21,7 @@ if ($proxima === 0) {
 }
 
 // A avaliação final só abre depois das cinco aulas
-$avaliacao_liberada = $liberar_avaliacao_para_teste || ($concluidas === count($aulas));
+$avaliacao_liberada = $ajustes['liberar_avaliacao_para_teste'] || ($concluidas === count($aulas));
 
 ?>
 <!DOCTYPE html>
@@ -103,18 +95,17 @@ $avaliacao_liberada = $liberar_avaliacao_para_teste || ($concluidas === count($a
                                     <span>Avaliação<br>final</span>
                                 </a>
                             <?php else: ?>
-                                <span class="btn-final bloqueado" role="link" aria-disabled="true"
-                                      title="Conclua as 5 aulas para liberar a avaliação final">
+                                <a class="btn-final bloqueado" href="#" data-aviso="Finalize todas as aulas primeiro!">
                                     <img src="imgs/padlock.png" alt="">
                                     <span>Avaliação<br>final</span>
-                                </span>
+                                </a>
                             <?php endif; ?>
 
                             <p>
                                 Responda corretamente ao<br>
                                 menos 7 questões das 10 totais<br>
-                                e finalize o curso InterseC de<br>
-                                Probabilidade.
+                                e finalize o curso Descomplicando<br>
+                                a Probabilidade.
                             </p>
 
                             <a class="link-ref" href="referencias.php">Referências</a>
@@ -131,6 +122,7 @@ $avaliacao_liberada = $liberar_avaliacao_para_teste || ($concluidas === count($a
     </div>
     <script src="style/escala.js"></script>
     <script src="style/scrollbar.js"></script>
+    <script src="style/aviso.js"></script>
     <script src="style/curva.js"></script>
 </body>
 

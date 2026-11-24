@@ -205,7 +205,7 @@ a:focus-visible { outline: 3px solid #ffb703; outline-offset: 4px; }
 .menu .fundo-svg { height: 874px; }
 
 /* símbolos que aparecem suavemente sobre o lavanda, mais perto do fim */
-.menu .simbolos::before { transform: rotate(-38.4deg) scale(.78); }
+.menu .simbolos::before, .aula-pag .simbolos::before, .quest .simbolos::before { transform: rotate(-38.4deg) scale(.78); }
 .simbolos-sobre {
     inset: 0;
     mix-blend-mode: multiply;
@@ -227,7 +227,7 @@ a:focus-visible { outline: 3px solid #ffb703; outline-offset: 4px; }
     background: var(--azul);
     box-shadow: 0 4px 6px rgba(0, 15, 71, .25);
     text-decoration: none;
-    transition: background .15s ease;
+    transition: background .1s ease;
 }
 .aula.atual .aula-botao { background: var(--btn-escuro); }
 .aula-botao:hover { background: var(--btn-escuro); }
@@ -417,8 +417,8 @@ a.btn-final:hover { background: var(--btn-escuro); }
 
 /* ================= TELA 5 · INÍCIO DA AVALIAÇÃO (startAvaliacao.php) ================= */
 .aval .bolha { transform-box: fill-box; }
-.aval .bolha-a { animation: flutuar-a 17s ease-in-out infinite; }
-.aval .bolha-b { animation: flutuar-b 21s ease-in-out infinite; }
+.aval .bolha-a { animation: flutuar-a 13s ease-in-out infinite; }
+.aval .bolha-b { animation: flutuar-b 16s ease-in-out infinite; }
 @keyframes flutuar-a {
     0%, 100% { transform: translate(0, 0) rotate(0deg); }
     33%      { transform: translate(22px, -26px) rotate(4deg); }
@@ -495,10 +495,232 @@ a.btn-final:hover { background: var(--btn-escuro); }
     color: #fff; text-decoration: none;
     font-family: 'Lexend Exa', 'Lexend', sans-serif;
     font-weight: 500;
-    transition: background .15s ease, transform .1s ease;
+    transition: background .1s ease, transform .08s ease;
 }
 .aval-comecar { top: 294px; height: 74px; border-radius: 24px; background: var(--azul); font-size: 21px; }
 .aval-depois  { top: 381px; height: 46px; border-radius: 20px; background: var(--btn-final); font-size: 20.5px; }
 .aval-comecar:hover { background: var(--btn-escuro); }
 .aval-depois:hover  { background: var(--azul); }
 .aval-comecar:active, .aval-depois:active { transform: translateY(1px); }
+
+
+/* ================= POP-UP DE AVISO ================= */
+.aviso-fundo {
+    position: absolute; inset: 0; z-index: 60;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(0, 15, 71, .5);
+    opacity: 0;
+    transition: opacity .12s ease;
+}
+.aviso-fundo.ativo { opacity: 1; }
+.aviso-caixa {
+    width: 312px;
+    padding: 30px 24px 24px;
+    border-radius: 28px;
+    background: #EEEDFF;
+    border: 3px solid var(--azul);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, .35);
+    text-align: center;
+    transform: scale(.9);
+    transition: transform .12s ease;
+}
+.aviso-fundo.ativo .aviso-caixa { transform: scale(1); }
+.aviso-caixa p {
+    margin: 0;
+    font-family: 'Lexend Exa', 'Lexend', sans-serif;
+    font-size: 20px; line-height: 28px; font-weight: 700;
+    color: var(--navy);
+}
+.aviso-caixa button {
+    margin-top: 22px;
+    width: 170px; height: 48px;
+    border: 0; border-radius: 24px;
+    background: var(--azul);
+    color: #fff;
+    font-family: 'Lexend Exa', 'Lexend', sans-serif;
+    font-size: 16px; font-weight: 600;
+    cursor: pointer;
+    transition: background .1s ease;
+}
+.aviso-caixa button:hover { background: var(--btn-escuro); }
+.btn-final.bloqueado { cursor: pointer; }
+
+/* ================= TELA VIDEOAULA (aula1.php … aula5.php) ================= */
+.titulo-aula {
+    position: absolute;
+    top: 73px; left: 23px;
+    width: 305px;
+    padding-left: 15px;
+    border-left: 3px solid var(--azul);
+    font-family: 'Lexend Exa', 'Lexend', sans-serif;
+    font-size: 32px; line-height: 39.5px; font-weight: 700;
+    color: var(--navy);
+    text-shadow: 0 3px 3px rgba(0, 15, 71, .22);
+    z-index: 4;
+}
+.titulo-aula .n { display: block; }
+.titulo-aula em { display: block; font-style: normal; color: var(--azul); }
+
+.faixa-material {
+    position: absolute;
+    left: 0; top: 289px; width: 402px; height: 95px;
+    background: #010B31;
+    z-index: 4;
+}
+.faixa-material .material { position: absolute; left: 74px; top: 17px; width: 64px; display: block; }
+.faixa-material .material img { display: block; width: 100%; height: auto; transition: transform .1s ease; }
+.faixa-material .material:hover img { transform: translateY(2px); }
+.faixa-material p {
+    position: absolute; left: 178px; top: 14px; margin: 0;
+    white-space: nowrap;
+    font-family: 'Lexend Exa', 'Lexend', sans-serif;
+    font-size: 15px; line-height: 19.5px; font-weight: 600;
+    color: #fff;
+}
+
+.btn-exercicios {
+    position: absolute;
+    left: 53px; top: 418px;
+    width: 296px; height: 60px;
+    display: flex; align-items: center;
+    border-radius: 30px;
+    background: var(--btn-final);
+    color: #fff;
+    text-decoration: none;
+    font-family: 'Lexend Exa', 'Lexend', sans-serif;
+    font-size: 24.6px; font-weight: 600;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, .25);
+    transition: background .1s ease, color .1s ease;
+    z-index: 4;
+}
+.btn-exercicios img { width: 28px; height: 28px; object-fit: contain; margin-left: 25px; }
+.btn-exercicios span { margin-left: 22px; }
+.btn-exercicios:hover { background: var(--btn-escuro); }
+.btn-exercicios.bloqueado { background: #0D1430; color: #9A9AA6; cursor: pointer; }
+
+.legenda-exercicios {
+    position: absolute;
+    left: 75px; top: 489px; margin: 0;
+    white-space: nowrap;
+    font-family: 'Lexend Exa', 'Lexend', sans-serif;
+    font-size: 12.4px; line-height: 14.5px; font-weight: 600;
+    color: var(--azul);
+    z-index: 4;
+}
+
+.moldura-video {
+    position: absolute;
+    left: 28px; top: 589px; width: 347px; height: 262px;
+    border-radius: 22px;
+    background: #2F3F7C;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, .3);
+    z-index: 4;
+}
+.tela-video {
+    position: absolute;
+    left: 8px; top: 9px; width: 331px; height: 243px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: linear-gradient(#0C1537 0%, #1E2C5F 55%, #0A112F 100%);
+    display: flex; align-items: center; justify-content: center;
+}
+.tela-video iframe, .tela-video #player { display: block; width: 331px; height: 186px; border: 0; }
+
+/* ================= TELA QUESTÕES (questoes.php) ================= */
+.quest .pagina-conteudo { background: #fff; overflow: hidden; }
+.lavanda-q {
+    top: 280px;
+    background: linear-gradient(#D4D1FE 0%, #D1CEFF 35%, #F5F5FE 100%);
+}
+.quest .simbolos-sobre {
+    -webkit-mask-image: linear-gradient(transparent 52%, #000 78%);
+            mask-image: linear-gradient(transparent 52%, #000 78%);
+}
+.quest .simbolos-sobre::before { top: -1168px; }
+.quest .barra { top: 326px; }
+
+.titulo-quest {
+    position: absolute;
+    top: 66px; left: 22px;
+    padding-left: 15px;
+    border-left: 3px solid var(--azul);
+    font-family: 'Lexend Exa', 'Lexend', sans-serif;
+    font-size: 32px; line-height: 40px; font-weight: 700;
+    color: var(--navy);
+    text-shadow: 0 3px 3px rgba(0, 15, 71, .22);
+    white-space: nowrap;
+    z-index: 4;
+}
+.titulo-quest em { font-style: normal; color: var(--azul); }
+
+.quest .texto-curvo text {
+    font-family: 'Lexend Exa', 'Cambria Math', 'Segoe UI Symbol', 'DejaVu Sans', sans-serif;
+    font-size: 35px; font-weight: 700; letter-spacing: .02em;
+    fill: var(--azul);
+}
+
+.q-lista { position: relative; z-index: 5; padding: 326px 0 118px; }
+
+.q-card {
+    width: 348px;
+    margin: 0 0 28px 18px;
+    padding: 24px 20px 26px 34px;
+    border-radius: 22px;
+    background: rgba(60, 81, 162, .24);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, .25);
+}
+.q-titulo {
+    margin: 0;
+    font-family: 'Lexend Exa', 'Lexend', sans-serif;
+    font-size: 15.5px; line-height: 18.2px; font-weight: 700;
+    color: var(--navy);
+    text-shadow: 0 2px 2px rgba(0, 15, 71, .25);
+}
+.q-titulo em { font-style: normal; color: var(--azul); }
+
+.q-enunciado {
+    margin: 12px 0 0;
+    white-space: pre-line;
+    font-family: 'Lexend Exa', 'Lexend', sans-serif;
+    font-size: 13.6px; line-height: 15.4px; font-weight: 600;
+    color: var(--navy);
+    text-shadow: 0 1px 2px rgba(0, 15, 71, .22);
+}
+
+.q-opcoes { margin-top: 20px; }
+.q-op {
+    display: flex; align-items: flex-start; gap: 18px;
+    padding: 4.5px 0;
+    cursor: pointer;
+    font-family: 'Lexend Exa', 'Lexend', sans-serif;
+    font-size: 15px; line-height: 20px; font-weight: 600;
+    color: var(--navy);
+}
+.q-op input {
+    -webkit-appearance: none; appearance: none;
+    flex: 0 0 22px; width: 22px; height: 22px; margin: 0;
+    border: 2.5px solid var(--navy);
+    border-radius: 50%;
+    background: #fff;
+    cursor: pointer;
+    transition: background .08s ease, box-shadow .08s ease;
+}
+.q-op input:checked { background: var(--navy); box-shadow: inset 0 0 0 3px #fff; }
+.q-op input:focus-visible { outline: 3px solid #ffb703; outline-offset: 2px; }
+.q-op span { padding-top: 0; }
+
+.btn-finalizar {
+    display: block;
+    width: 323px; height: 84px;
+    margin: 75px 0 0 39px;
+    border: 0; border-radius: 30px;
+    background: var(--btn-final);
+    color: #fff;
+    font-family: 'Lexend Exa', 'Lexend', sans-serif;
+    font-size: 23.5px; font-weight: 600;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
+    cursor: pointer;
+    transition: background .1s ease, transform .08s ease;
+}
+.btn-finalizar:hover { background: var(--azul); }
+.btn-finalizar:active { transform: translateY(1px); }
