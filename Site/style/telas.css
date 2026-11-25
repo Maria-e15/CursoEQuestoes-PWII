@@ -205,7 +205,7 @@ a:focus-visible { outline: 3px solid #ffb703; outline-offset: 4px; }
 .menu .fundo-svg { height: 874px; }
 
 /* símbolos que aparecem suavemente sobre o lavanda, mais perto do fim */
-.menu .simbolos::before, .aula-pag .simbolos::before, .quest .simbolos::before { transform: rotate(-38.4deg) scale(.78); }
+.menu .simbolos::before, .aula-pag .simbolos::before, .quest .simbolos::before, .res .simbolos::before { transform: rotate(-38.4deg) scale(.78); }
 .simbolos-sobre {
     inset: 0;
     mix-blend-mode: multiply;
@@ -229,7 +229,7 @@ a:focus-visible { outline: 3px solid #ffb703; outline-offset: 4px; }
     text-decoration: none;
     transition: background .1s ease;
 }
-.aula.atual .aula-botao { background: var(--btn-escuro); }
+.aula.concluida .aula-botao { background: var(--btn-escuro); }
 .aula-botao:hover { background: var(--btn-escuro); }
 .aula-botao svg { width: 62px; height: 62px; fill: #fff; margin-left: 4px; }
 
@@ -724,3 +724,137 @@ a.btn-final:hover { background: var(--btn-escuro); }
 }
 .btn-finalizar:hover { background: var(--azul); }
 .btn-finalizar:active { transform: translateY(1px); }
+
+
+/* ================= TELA RESULTADOS (resultado.php) ================= */
+.res-titulo {
+    position: absolute;
+    top: 86px; left: 34px;
+    padding-left: 18px;
+    border-left: 3px solid var(--azul);
+    font-family: 'Lexend Exa', 'Lexend', sans-serif;
+    font-size: 33px; line-height: 40px; font-weight: 700;
+    color: var(--navy);
+    text-shadow: 0 3px 3px rgba(0, 15, 71, .22);
+    white-space: nowrap;
+    z-index: 4;
+}
+.res-titulo em { font-style: normal; color: var(--azul); }
+
+.res-card {
+    position: absolute;
+    left: 26px; top: 209px;
+    width: 357px; height: 548px;
+    border-radius: 18px;
+    background: rgba(212, 209, 254, .82);
+    box-shadow: 0 6px 6px rgba(0, 0, 0, .25);
+    overflow: hidden;
+    z-index: 4;
+}
+.res-card > * { position: absolute; margin: 0; }
+
+.res-h {
+    left: 30px; top: 30px;
+    font-family: 'Lexend Exa', 'Lexend', sans-serif;
+    font-size: 43px; line-height: 52px; font-weight: 700;
+    color: var(--navy);
+    text-shadow: 0 3px 3px rgba(0, 15, 71, .25);
+}
+.res-placar {
+    left: 0; right: 0; top: 119px; height: 95px;
+    background: #EDECFF;
+    text-align: center;
+    font-family: 'Lexend Exa', 'Lexend', sans-serif;
+    font-size: 78px; line-height: 95px; font-weight: 700;
+    color: var(--navy);
+}
+.res-placar span { color: var(--azul); }
+.res-erros-t {
+    left: 30px; top: 252px;
+    font-family: 'Lexend Exa', 'Lexend', sans-serif;
+    font-size: 40px; line-height: 46px; font-weight: 700;
+    color: var(--navy);
+    text-shadow: 0 3px 3px rgba(0, 15, 71, .25);
+}
+.res-nenhum {
+    left: 30px; top: 316px;
+    font-family: 'Lexend Exa', 'Lexend', sans-serif;
+    font-size: 32px; line-height: 37px; font-weight: 700;
+    color: var(--azul);
+}
+.res-lista {
+    left: 0; top: 312px;
+    list-style: none; padding: 0;
+    font-family: 'Lexend Exa', 'Lexend', sans-serif;
+    font-size: 34px; line-height: 38.5px; font-weight: 700;
+    color: var(--azul);
+}
+.res-lista li { display: flex; align-items: center; gap: 18px; padding-left: 54px; }
+.res-lista li i { width: 8px; height: 8px; border-radius: 50%; background: var(--azul); flex: 0 0 auto; }
+.res-icone {
+    left: 233px; top: 315px; width: 107px; height: 93px;
+    border-radius: 14px;
+    background: #EDECFF;
+    display: grid; place-items: center;
+}
+.res-icone svg { width: 75px; height: 75px; display: block; }
+
+.res-continuar {
+    left: 17px; top: 447px; width: 323px; height: 75px;
+    display: flex; align-items: center; justify-content: center;
+    border-radius: 26px;
+    background: var(--btn-final);
+    color: #fff; text-decoration: none;
+    font-family: 'Lexend Exa', 'Lexend', sans-serif;
+    font-size: 25px; font-weight: 600;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, .3);
+    transition: background .1s ease, transform .08s ease;
+}
+.res-continuar:hover { background: var(--azul); }
+.res-continuar:active { transform: translateY(1px); }
+
+.res-novamente {
+    position: absolute; left: 0; width: 402px; top: 781px;
+    margin: 0; text-align: center;
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 20px; line-height: 24px;
+    z-index: 4;
+}
+.res-novamente a { color: var(--azul); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ================= AVALIAÇÃO FINAL (prova_final.php) ================= */
+.prova .lavanda-q { top: 600px; }
+.prova .q-lista { padding-top: 678px; }
+.prova .barra { top: 678px; }
+
+.titulo-prova {
+    position: absolute;
+    top: 134px; left: 19px;
+    padding-left: 18px;
+    border-left: 3px solid var(--azul);
+    font-family: 'Lexend Exa', 'Lexend', sans-serif;
+    font-size: 31px; line-height: 37.8px; font-weight: 700;
+    color: var(--navy);
+    text-shadow: 0 3px 3px rgba(0, 15, 71, .22);
+    white-space: nowrap;
+    z-index: 4;
+}
+.titulo-prova em { font-style: normal; color: var(--azul); }
+
+.timer-prova {
+    position: absolute;
+    left: 40px; top: 379px; width: 321px; height: 76px;
+    border-radius: 28px;
+    background: rgba(238, 237, 255, .94);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, .25);
+    text-align: center;
+    font-family: 'Lexend Exa', 'Lexend', sans-serif;
+    font-size: 38px; line-height: 76px; font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: var(--navy);
+    white-space: nowrap;
+    overflow: hidden;
+    z-index: 8;
+    will-change: left, top, width, height;
+}
+.timer-prova.pouco { color: #B3261E; }

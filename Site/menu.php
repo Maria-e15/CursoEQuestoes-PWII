@@ -2,6 +2,9 @@
 
 session_start();
 
+// A página nunca deve ser reaproveitada do cache do navegador (o estado dos botões muda)
+header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+
 // Dados das aulas (config/aulas.php) e chaves de teste (config/ajustes.php)
 $aulas   = require __DIR__ . '/config/aulas.php';
 $ajustes = require __DIR__ . '/config/ajustes.php';
@@ -9,8 +12,10 @@ $ajustes = require __DIR__ . '/config/ajustes.php';
 // Aulas concluídas (marcadas em corrigir.php) e a próxima a assistir
 $concluidas = 0;
 $proxima = 0;
+$concluida = [];
 foreach ($aulas as $numero => $aula) {
-    if (!empty($_SESSION['aula_concluida_' . $numero])) {
+    $concluida[$numero] = !empty($_SESSION['aula_concluida_' . $numero]) || isset($_SESSION['resultado_aula_' . $numero]);
+    if ($concluida[$numero]) {
         $concluidas++;
     } elseif ($proxima === 0) {
         $proxima = $numero;
@@ -22,6 +27,18 @@ if ($proxima === 0) {
 
 // A avaliação final só abre depois das cinco aulas
 $avaliacao_liberada = $ajustes['liberar_avaliacao_para_teste'] || ($concluidas === count($aulas));
+
+if (isset($_GET['diagnostico'])) {
+    header('Content-Type: text/plain; charset=utf-8');
+    echo "Diagnóstico do progresso (menu.php?diagnostico=1)\n\n";
+    foreach ($aulas as $numero => $aula) {
+        echo 'Aula ' . $numero . ': vídeo=' . (!empty($_SESSION['video_concluido_' . $numero]) ? 'sim' : 'não')
+           . ' | exercícios respondidos=' . ($concluida[$numero] ? 'sim' : 'não') . "\n";
+    }
+    echo "\nAulas concluídas: $concluidas de " . count($aulas) . "\n";
+    echo 'Avaliação final liberada: ' . ($avaliacao_liberada ? 'sim' : 'não') . "\n";
+    exit;
+}
 
 ?>
 <!DOCTYPE html>
@@ -73,7 +90,7 @@ $avaliacao_liberada = $ajustes['liberar_avaliacao_para_teste'] || ($concluidas =
 
                     <div class="lista">
                         <?php foreach ($aulas as $numero => $aula): ?>
-                            <section class="aula<?php echo $numero === $proxima ? ' atual' : ''; ?>">
+                            <section class="aula<?php echo $concluida[$numero] ? ' concluida' : ''; ?>">
                                 <a class="aula-botao" href="aula<?php echo $numero; ?>.php"
                                    aria-label="Assistir à aula <?php echo $numero; ?>">
                                     <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -123,6 +140,10 @@ $avaliacao_liberada = $ajustes['liberar_avaliacao_para_teste'] || ($concluidas =
     <script src="style/escala.js"></script>
     <script src="style/scrollbar.js"></script>
     <script src="style/aviso.js"></script>
+    <script>
+        // Se o navegador mostrar esta página a partir do histórico (botão "voltar"), recarrega para refletir o progresso
+        window.addEventListener('pageshow', function (e) { if (e.persisted) location.reload(); });
+    </script>
     <script src="style/curva.js"></script>
 </body>
 

@@ -14,8 +14,9 @@ if ($aula < 1 || $aula > 5 || !isset($_SESSION[$chave])) {
 $questoes  = $_SESSION[$chave];
 $respostas = $_POST['respostas'] ?? [];
 $acertos   = 0;
+$erros     = []; // números (1, 2, 3) das questões erradas
 
-foreach ($questoes as $questao) {
+foreach ($questoes as $indice => $questao) {
 
     $id = $questao['id_questao'];
 
@@ -24,12 +25,14 @@ foreach ($questoes as $questao) {
         strtolower($respostas[$id]) === strtolower($questao['resposta_correta'])
     ) {
         $acertos++;
+    } else {
+        $erros[] = $indice + 1;
     }
 }
 
-$_SESSION['acertos_aula_' . $aula]   = $acertos;
+// Aula concluída = vídeo assistido + exercícios respondidos
 $_SESSION['aula_concluida_' . $aula] = true;
+$_SESSION['resultado_aula_' . $aula] = ['acertos' => $acertos, 'total' => count($questoes), 'erros' => $erros];
 
-// "Finalizar aula!" leva o aluno de volta ao menu principal
-header('Location: menu.php');
+header('Location: resultado.php?aula=' . $aula);
 exit;

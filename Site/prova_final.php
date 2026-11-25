@@ -1,22 +1,33 @@
-
 <?php
 
 session_start();
-require_once "config/conexao.php";
+require_once 'config/conexao.php';
+
+$ajustes = require __DIR__ . '/config/ajustes.php';
 
 // Verifica se as cinco aulas foram concluídas
-for ($i = 1; $i <= 5; $i++) {
-    if (!isset($_SESSION['aula_concluida_' . $i])) {
-        die("Você precisa concluir todas as cinco aulas antes de fazer a prova final.");
+if (!$ajustes['liberar_avaliacao_para_teste']) {
+    for ($i = 1; $i <= 5; $i++) {
+        if (empty($_SESSION['aula_concluida_' . $i])) {
+            header('Location: menu.php');
+            exit;
+        }
     }
+}
+
+// "Começar agora" (startAvaliacao.php) abre uma tentativa nova: novas questões e cronômetro zerado
+if (isset($_GET['novo'])) {
+    unset($_SESSION['questoes_prova_final'], $_SESSION['prova_inicio']);
+    header('Location: prova_final.php');
+    exit;
 }
 
 // Sorteia as 10 questões apenas uma vez
 if (!isset($_SESSION['questoes_prova_final'])) {
 
-    $sql = "SELECT * FROM questoes
+    $sql = 'SELECT * FROM questoes
             ORDER BY RAND()
-            LIMIT 10";
+            LIMIT 10';
 
     $consulta = $conexao->prepare($sql);
     $consulta->execute();
@@ -28,80 +39,107 @@ if (!isset($_SESSION['questoes_prova_final'])) {
 $questoes = $_SESSION['questoes_prova_final'];
 
 if (count($questoes) < 10) {
-    die("Não existem questões suficientes para a prova final.");
+    die('Não existem questões suficientes para a prova final.');
 }
 
-?>
+// Cronômetro: começa na primeira vez que a prova é aberta e não para (nem ao recarregar a página)
+if (!isset($_SESSION['prova_inicio'])) {
+    $_SESSION['prova_inicio'] = microtime(true);
+}
+$duracao_segundos = (int) round((float) $ajustes['duracao_prova_minutos'] * 60);
+$restante_ms      = (int) max(0, ($_SESSION['prova_inicio'] + $duracao_segundos - microtime(true)) * 1000);
 
+$alternativas = ['a', 'b', 'c', 'd', 'e'];
+
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Prova Final</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Avaliação final | InterseC</title>
+    <link rel="stylesheet" href="style/telas.css">
 </head>
 
 <body>
+    <div class="moldura">
+        <main class="tela quest prova">
 
-<main class="container mt-5">
+            <div class="pagina">
+                <div class="pagina-conteudo">
 
-    <h1>Prova Final</h1>
+                    <!-- Camada 1: fundo branco + símbolos matemáticos -->
+                    <div class="simbolos" aria-hidden="true"></div>
 
-    <p>Responda às 10 questões abaixo para concluir o curso.</p>
+                    <!-- Camada 2: gradiente lavanda (topo curvo + corpo até o fim da página) -->
+                    <svg class="fundo-svg" viewBox="0 0 402 874" aria-hidden="true">
+                        <path fill="#D4D1FE" d="M0,564 C9.8,566.7 39.3,574.7 59.0,580.0 C78.7,585.3 98.3,591.8 118.0,596.0 C137.7,600.2 157.3,603.5 177.0,605.0 C196.7,606.5 216.3,607.2 236.0,605.0 C255.7,602.8 275.3,599.8 295.0,592.0 C314.7,584.2 336.2,567.5 354.0,558.0 C371.8,548.5 394.0,538.8 402.0,535.0 V874 H0 Z"/>
+                    </svg>
+                    <div class="lavanda-corpo lavanda-q" aria-hidden="true"></div>
+                    <div class="simbolos simbolos-sobre" aria-hidden="true"></div>
 
-    <form action="corrigir_prova_final.php" method="POST">
+                    <!-- Camada 3: título, seta e símbolos em movimento sobre a curva -->
+                    <h1 class="titulo-prova">
+                        <em>Responda<br>corretamente<br>ao menos 7</em><br>questões e<br>finalize o curso!
+                    </h1>
 
-        <?php foreach ($questoes as $indice => $questao): ?>
+                    <a class="btn-voltar" href="menu.php" aria-label="Voltar para as aulas"
+                       data-confirmar="Sair da avaliação? O cronômetro continua correndo."
+                       style="left:339px; top:127px; width:50px;">
+                        <img src="imgs/gobackBtn.png" alt="">
+                    </a>
 
-            <div class="card p-4 mb-4">
+                    <svg class="texto-curvo texto-simbolos" viewBox="0 0 402 874" aria-hidden="true">
+                        <defs>
+                            <path id="arco" d="M-30,554 C-25.0,554.3 -14.8,553.0 0.0,556.0 C14.8,559.0 39.3,566.7 59.0,572.0 C78.7,577.3 98.3,583.8 118.0,588.0 C137.7,592.2 157.3,595.5 177.0,597.0 C196.7,598.5 216.3,599.2 236.0,597.0 C255.7,594.8 275.3,591.8 295.0,584.0 C314.7,576.2 336.2,559.5 354.0,550.0 C371.8,540.5 387.7,532.0 402.0,527.0 C416.3,522.0 433.7,521.2 440.0,520.0"/>
+                        </defs>
+                        <text><textPath id="tp" href="#arco" data-texto="π Σ ∫ √ ∞ ± ≠ ≤ × ÷ ∈ ">π Σ ∫ √ ∞ ± ≠ ≤ × ÷ ∈ </textPath></text>
+                    </svg>
 
-                <h5>Questão <?php echo $indice + 1; ?></h5>
+                    <form class="q-lista" id="form-prova" action="corrigir_prova_final.php" method="POST">
 
-                <p style = "text-align: justify;">
-                    <?php echo htmlspecialchars($questao['enunciado']); ?>
-                </p>
+                        <?php foreach ($questoes as $indice => $questao): ?>
+                            <section class="q-card">
+                                <h2 class="q-titulo">
+                                    Questão <?php echo $indice + 1; ?>.
+                                    <em>(<?php echo htmlspecialchars($questao['topico']); ?>)</em>
+                                </h2>
 
-                <?php $alternativas = ['a', 'b', 'c', 'd', 'e']; ?>
+                                <p class="q-enunciado"><?php echo htmlspecialchars($questao['enunciado']); ?></p>
 
-                <?php foreach ($alternativas as $letra): ?>
+                                <div class="q-opcoes">
+                                    <?php foreach ($alternativas as $letra): ?>
+                                        <label class="q-op">
+                                            <input type="radio"
+                                                   name="respostas[<?php echo $questao['id_questao']; ?>]"
+                                                   value="<?php echo $letra; ?>" required>
+                                            <span><?php echo htmlspecialchars($questao['alternativa_' . $letra]); ?></span>
+                                        </label>
+                                    <?php endforeach; ?>
+                                </div>
+                            </section>
+                        <?php endforeach; ?>
 
-                    <div class="form-check mb-2" style = "text-align: justify;">
+                        <button type="submit" class="btn-finalizar">Enviar respostas</button>
+                    </form>
 
-                        <input
-                            class="form-check-input"
-                            type="radio"
-                            name="respostas[<?php echo $questao['id_questao']; ?>]"
-                            value="<?php echo $letra; ?>"
-                            required
-                        >
+                    <!-- Barra de rolagem personalizada (acompanha o conteúdo) -->
+                    <div class="barra" aria-hidden="true"><div class="polegar"></div></div>
 
-                        <label class="form-check-label">
-
-                            <?php echo strtoupper($letra); ?>)
-
-                            <?php echo htmlspecialchars($questao['alternativa_' . $letra]); ?>
-
-                        </label>
-
-                    </div>
-
-                <?php endforeach; ?>
-
+                </div>
             </div>
 
-        <?php endforeach; ?>
+            <!-- Cronômetro único: grande no topo e, ao rolar, encolhe e se fixa no canto -->
+            <div class="timer-prova" id="timer" role="timer" aria-label="Tempo restante"
+                 data-restante="<?php echo $restante_ms; ?>">45:00:00</div>
 
-        <button type="submit" class="btn btn-success">
-            Finalizar prova
-        </button>
-
-    </form>
-
-</main>
-
+        </main>
+    </div>
+    <script src="style/escala.js"></script>
+    <script src="style/scrollbar.js"></script>
+    <script src="style/curva.js"></script>
+    <script src="style/timer.js"></script>
 </body>
+
 </html>

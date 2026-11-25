@@ -1,8 +1,9 @@
 <?php
 
-// Configuração da avaliação (altere aqui se mudar a duração)
-$duracao_minutos = 45;
-$duracao_extenso = 'Quarenta e cinco minutos';
+// A duração vem de config/ajustes.php (duracao_prova_minutos)
+$ajustes = require __DIR__ . '/config/ajustes.php';
+$duracao_minutos = (int) $ajustes['duracao_prova_minutos'];
+$duracao_extenso = 'Quarenta e cinco minutos'; // texto por extenso (ajuste se mudar a duração)
 $tempo_exibicao  = sprintf('%02d:00:00', $duracao_minutos);
 
 ?>
@@ -65,7 +66,7 @@ $tempo_exibicao  = sprintf('%02d:00:00', $duracao_minutos);
                     pausado.</strong>
                 </p>
 
-                <a class="aval-comecar" href="prova_final.php">Começar agora</a>
+                <a class="aval-comecar" href="prova_final.php?novo=1">Começar agora</a>
                 <a class="aval-depois" href="menu.php">Mais tarde</a>
             </section>
 

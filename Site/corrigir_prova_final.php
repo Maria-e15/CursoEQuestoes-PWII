@@ -26,6 +26,9 @@ foreach ($questoes as $questao) {
 
 $porcentagem = ($acertos / 10) * 100;
 
+// encerra o cronômetro desta tentativa
+unset($_SESSION['prova_inicio']);
+
 ?>
 
 <!DOCTYPE html>

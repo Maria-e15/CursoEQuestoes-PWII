@@ -20,6 +20,13 @@ if (empty($_SESSION['video_concluido_' . $aula]) && !$ajustes['liberar_exercicio
     exit;
 }
 
+// "Tentar novamente": descarta as questões sorteadas e sorteia outras
+if (isset($_GET['novo'])) {
+    unset($_SESSION['questoes_aula_' . $aula]);
+    header('Location: questoes.php?aula=' . $aula);
+    exit;
+}
+
 // Nome da aula no banco
 $aula_nome = 'Aula ' . $aula;
 $numero    = str_pad($aula, 2, '0', STR_PAD_LEFT);
