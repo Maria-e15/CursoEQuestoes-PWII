@@ -11,7 +11,8 @@
         setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 120);
     }
 
-    window.mostrarAviso = function (mensagem) {
+    // mostrarAviso('Título do aviso', 'texto de apoio opcional')
+    window.mostrarAviso = function (mensagem, detalhe) {
         var tela = document.querySelector('.tela');
         if (!tela) return;
         fechar();
@@ -27,12 +28,19 @@
         var texto = document.createElement('p');
         texto.textContent = mensagem;
 
+        var apoio = null;
+        if (detalhe) {
+            apoio = document.createElement('small');
+            apoio.textContent = detalhe;
+        }
+
         var botao = document.createElement('button');
         botao.type = 'button';
         botao.textContent = 'Entendi';
         botao.addEventListener('click', fechar);
 
         caixa.appendChild(texto);
+        if (apoio) caixa.appendChild(apoio);
         caixa.appendChild(botao);
         fundo.appendChild(caixa);
         fundo.addEventListener('click', function (e) { if (e.target === fundo) fechar(); });
@@ -40,7 +48,7 @@
 
         atual = fundo;
         requestAnimationFrame(function () { fundo.classList.add('ativo'); botao.focus(); });
-        temporizador = setTimeout(fechar, 3500);
+        temporizador = setTimeout(fechar, detalhe ? 5500 : 3500);
     };
 
     document.addEventListener('click', function (e) {

@@ -1,0 +1,3 @@
+Coloque aqui os PDFs do material didático, com estes nomes:
+  aula1.pdf, aula2.pdf, aula3.pdf, aula4.pdf, aula5.pdf
+(Para usar outros nomes, edite config/aulas.php.)

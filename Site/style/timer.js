@@ -1,7 +1,8 @@
 // Cronômetro da avaliação final.
 // - Conta regressivamente em MM:SS:CC (minutos : segundos : centésimos).
 // - Ao rolar a página, o cronômetro grande acompanha a rolagem, encolhe e se fixa no canto superior direito.
-// - Quando o tempo acaba, as respostas são enviadas automaticamente.
+// - Quando o tempo acaba, a tela escurece e aparece "Seu tempo acabou!" com o botão de encerrar;
+//   ao encerrar, só as questões já respondidas entram na contagem de acertos.
 (function () {
     var el = document.getElementById('timer');
     var pagina = document.querySelector('.pagina');
@@ -46,11 +47,21 @@
         form.submit(); // envia o que já foi respondido (não exige todas as questões)
     }
 
+    // tempo esgotado: escurece a tela e mostra o aviso (a avaliação só segue ao clicar em "Encerrar avaliação")
+    function tempoEsgotado() {
+        var aviso = document.getElementById('aviso-tempo');
+        var botao = document.getElementById('btn-encerrar-prova');
+        if (!aviso) { enviar(); return; }
+        aviso.hidden = false;
+        requestAnimationFrame(function () { aviso.classList.add('ativo'); if (botao) botao.focus(); });
+        if (botao) botao.addEventListener('click', enviar);
+    }
+
     function quadro() {
         var restante = fim - performance.now();
         el.textContent = formatar(restante);
         el.classList.toggle('pouco', restante < 5 * 60 * 1000);
-        if (restante <= 0) { enviar(); return; }
+        if (restante <= 0) { el.textContent = formatar(0); tempoEsgotado(); return; }
         requestAnimationFrame(quadro);
     }
 

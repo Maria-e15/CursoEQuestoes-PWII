@@ -64,7 +64,7 @@ $exercicios_liberados = !empty($_SESSION['video_concluido_' . $aula]) || $ajuste
 
             <!-- Faixa do material didático (o livro é o botão de download) -->
             <section class="faixa-material">
-                <?php if (!empty($dados['material'])): ?>
+                <?php if (!empty($dados['material']) && is_file(__DIR__ . '/' . $dados['material'])): ?>
                     <a class="material" href="<?php echo htmlspecialchars($dados['material']); ?>" download
                        aria-label="Baixar o material didático desta aula">
                         <img src="imgs/downloadBook.png" alt="">

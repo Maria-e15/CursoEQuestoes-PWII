@@ -84,12 +84,6 @@ $alternativas = ['a', 'b', 'c', 'd', 'e'];
                         <em>Responda<br>corretamente<br>ao menos 7</em><br>questões e<br>finalize o curso!
                     </h1>
 
-                    <a class="btn-voltar" href="menu.php" aria-label="Voltar para as aulas"
-                       data-confirmar="Sair da avaliação? O cronômetro continua correndo."
-                       style="left:339px; top:127px; width:50px;">
-                        <img src="imgs/gobackBtn.png" alt="">
-                    </a>
-
                     <svg class="texto-curvo texto-simbolos" viewBox="0 0 402 874" aria-hidden="true">
                         <defs>
                             <path id="arco" d="M-30,554 C-25.0,554.3 -14.8,553.0 0.0,556.0 C14.8,559.0 39.3,566.7 59.0,572.0 C78.7,577.3 98.3,583.8 118.0,588.0 C137.7,592.2 157.3,595.5 177.0,597.0 C196.7,598.5 216.3,599.2 236.0,597.0 C255.7,594.8 275.3,591.8 295.0,584.0 C314.7,576.2 336.2,559.5 354.0,550.0 C371.8,540.5 387.7,532.0 402.0,527.0 C416.3,522.0 433.7,521.2 440.0,520.0"/>
@@ -134,11 +128,21 @@ $alternativas = ['a', 'b', 'c', 'd', 'e'];
             <div class="timer-prova" id="timer" role="timer" aria-label="Tempo restante"
                  data-restante="<?php echo $restante_ms; ?>">45:00:00</div>
 
+            <!-- Aviso de tempo encerrado (aparece quando o cronômetro chega a zero) -->
+            <div class="aviso-fundo aviso-tempo" id="aviso-tempo" role="alertdialog" aria-live="assertive" hidden>
+                <div class="aviso-caixa">
+                    <p>Seu tempo acabou!</p>
+                    <button type="button" id="btn-encerrar-prova">Encerrar avaliação</button>
+                </div>
+            </div>
+
         </main>
     </div>
     <script src="style/escala.js"></script>
     <script src="style/scrollbar.js"></script>
     <script src="style/curva.js"></script>
+    <script src="style/aviso.js"></script>
+    <script src="style/validar.js"></script>
     <script src="style/timer.js"></script>
 </body>
 

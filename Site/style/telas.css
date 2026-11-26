@@ -509,41 +509,82 @@ a.btn-final:hover { background: var(--btn-escuro); }
     position: absolute; inset: 0; z-index: 60;
     display: flex; align-items: center; justify-content: center;
     background: rgba(0, 15, 71, .5);
+    -webkit-backdrop-filter: blur(2px);
+            backdrop-filter: blur(2px);
     opacity: 0;
     transition: opacity .12s ease;
 }
 .aviso-fundo.ativo { opacity: 1; }
+.aviso-fundo[hidden] { display: none; }
+.aviso-tempo { background: rgba(0, 15, 71, .55); z-index: 80; }
+
 .aviso-caixa {
-    width: 312px;
-    padding: 30px 24px 24px;
-    border-radius: 28px;
-    background: #EEEDFF;
-    border: 3px solid var(--azul);
-    box-shadow: 0 8px 18px rgba(0, 0, 0, .35);
+    position: relative;
+    width: 316px;
+    padding: 52px 26px 26px;
+    border-radius: 30px;
+    background: linear-gradient(#F7F6FF, #E2E0FF);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, .38), inset 0 0 0 2px rgba(60, 81, 162, .25);
     text-align: center;
-    transform: scale(.9);
-    transition: transform .12s ease;
+    transform: translateY(8px) scale(.92);
+    transition: transform .14s ease;
 }
-.aviso-fundo.ativo .aviso-caixa { transform: scale(1); }
+.aviso-fundo.ativo .aviso-caixa { transform: none; }
+
+/* selo de alerta no topo do cartão */
+.aviso-caixa::before {
+    content: '!';
+    position: absolute; left: 50%; top: -34px;
+    width: 68px; height: 68px; margin-left: -34px;
+    display: grid; place-items: center;
+    border-radius: 50%;
+    background: var(--azul);
+    box-shadow: 0 0 0 6px #EEEDFF, 0 6px 10px rgba(0, 15, 71, .35);
+    color: #fff;
+    font-family: 'Lexend Exa', 'Lexend', sans-serif;
+    font-size: 38px; font-weight: 700; line-height: 1;
+}
 .aviso-caixa p {
     margin: 0;
     font-family: 'Lexend Exa', 'Lexend', sans-serif;
-    font-size: 20px; line-height: 28px; font-weight: 700;
+    font-size: 20px; line-height: 27px; font-weight: 700;
     color: var(--navy);
+    text-shadow: 0 2px 2px rgba(0, 15, 71, .18);
+}
+.aviso-caixa small {
+    display: block;
+    margin-top: 10px;
+    font-family: 'Inter', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 15px; line-height: 20px; font-weight: 500;
+    color: var(--azul);
 }
 .aviso-caixa button {
     margin-top: 22px;
-    width: 170px; height: 48px;
-    border: 0; border-radius: 24px;
+    width: 180px; height: 50px;
+    border: 0; border-radius: 25px;
     background: var(--azul);
+    box-shadow: 0 4px 6px rgba(0, 15, 71, .3);
     color: #fff;
     font-family: 'Lexend Exa', 'Lexend', sans-serif;
     font-size: 16px; font-weight: 600;
     cursor: pointer;
-    transition: background .1s ease;
+    transition: background .1s ease, transform .08s ease;
 }
 .aviso-caixa button:hover { background: var(--btn-escuro); }
+.aviso-caixa button:active { transform: translateY(1px); }
+.aviso-tempo .aviso-caixa button { width: 240px; white-space: nowrap; }
 .btn-final.bloqueado { cursor: pointer; }
+
+/* questão não respondida (destacada quando o aluno tenta enviar) */
+.q-card.pendente {
+    box-shadow: 0 0 0 3px var(--azul), 0 4px 6px rgba(0, 0, 0, .25);
+    animation: tremer .3s ease;
+}
+@keyframes tremer {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-6px); }
+    60% { transform: translateX(5px); }
+}
 
 /* ================= TELA VIDEOAULA (aula1.php … aula5.php) ================= */
 .titulo-aula {
@@ -630,11 +671,13 @@ a.btn-final:hover { background: var(--btn-escuro); }
 .quest .pagina-conteudo { background: #fff; overflow: hidden; }
 .lavanda-q {
     top: 280px;
-    background: linear-gradient(#D4D1FE 0%, #D1CEFF 35%, #F5F5FE 100%);
+    /* lavanda até perto do fim e, nos últimos 1000px, clareia até quase branco (vale para qualquer quantidade de questões) */
+    background: linear-gradient(#D4D1FE calc(100% - 1000px), #F5F5FE 100%);
 }
 .quest .simbolos-sobre {
-    -webkit-mask-image: linear-gradient(transparent 52%, #000 78%);
-            mask-image: linear-gradient(transparent 52%, #000 78%);
+    top: auto; height: 1100px;
+    -webkit-mask-image: linear-gradient(transparent 0%, #000 55%);
+            mask-image: linear-gradient(transparent 0%, #000 55%);
 }
 .quest .simbolos-sobre::before { top: -1168px; }
 .quest .barra { top: 326px; }
@@ -858,3 +901,69 @@ a.btn-final:hover { background: var(--btn-escuro); }
     will-change: left, top, width, height;
 }
 .timer-prova.pouco { color: #B3261E; }
+
+
+/* ================= RESULTADOS FINAIS (resultado_final.php) ================= */
+.resf-titulo {
+    position: absolute;
+    top: 107px; left: 39px;
+    padding-left: 9px;
+    border-left: 2px solid var(--azul);
+    font-family: 'Lexend Exa', 'Lexend', sans-serif;
+    font-size: 34px; line-height: 40.5px; font-weight: 700;
+    color: var(--navy);
+    text-shadow: 0 3px 3px rgba(0, 15, 71, .22);
+    white-space: nowrap;
+    z-index: 4;
+}
+.resf-titulo em { font-style: normal; color: var(--azul); }
+
+.resf-card {
+    position: absolute;
+    left: 27px; top: 274px;
+    width: 347px; height: 495px;
+    border-radius: 16px;
+    background: rgba(238, 237, 255, .88);
+    -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(12px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, .28);
+    z-index: 4;
+}
+.resf-card > * { position: absolute; margin: 0; }
+
+.resf-msg {
+    font-family: 'Lexend Exa', 'Lexend', sans-serif;
+    font-weight: 600; color: var(--azul);
+}
+.resf-card.aprovado .resf-msg { left: 0; right: 0; top: 56px; text-align: center; font-size: 38px; line-height: 44px; }
+.resf-card.reprovado .resf-msg { left: 32px; top: 17px; font-size: 36.5px; line-height: 43px; }
+
+.resf-placar {
+    left: 0; right: 0; top: 118px;
+    text-align: center;
+    font-family: 'Lexend Exa', 'Lexend', sans-serif;
+    font-size: 69px; line-height: 80px; font-weight: 700;
+    color: var(--navy);
+}
+.resf-placar span { color: var(--azul); }
+
+.resf-texto {
+    left: 41px; top: 218px;
+    white-space: nowrap;
+    font-family: 'Lexend Exa', 'Lexend', sans-serif;
+    font-size: 24.6px; line-height: 29.8px; font-weight: 600;
+    color: var(--azul);
+}
+.resf-texto strong { font-weight: 700; color: var(--navy); }
+
+.resf-encerrar, .resf-inicio {
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; text-decoration: none;
+    font-family: 'Lexend Exa', 'Lexend', sans-serif; font-weight: 600;
+    transition: background .1s ease, transform .08s ease;
+}
+.resf-encerrar { left: 16px; top: 334px; width: 316px; height: 73px; border-radius: 28px; background: var(--azul); font-size: 24.3px; }
+.resf-inicio   { left: 21px; top: 422px; width: 308px; height: 46px; border-radius: 22px; background: var(--btn-final); font-size: 19.9px; }
+.resf-encerrar:hover { background: var(--btn-escuro); }
+.resf-inicio:hover { background: var(--azul); }
+.resf-encerrar:active, .resf-inicio:active { transform: translateY(1px); }

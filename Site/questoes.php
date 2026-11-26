@@ -139,6 +139,8 @@ $alternativas = ['a', 'b', 'c', 'd', 'e'];
     </div>
     <script src="style/escala.js"></script>
     <script src="style/scrollbar.js"></script>
+    <script src="style/aviso.js"></script>
+    <script src="style/validar.js"></script>
     <script src="style/curva.js"></script>
 </body>
 
