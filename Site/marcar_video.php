@@ -1,6 +1,5 @@
 <?php
 
-// Chamado pela página da aula quando o vídeo termina: libera os exercícios daquela aula.
 session_start();
 
 $aula = isset($_POST['aula']) ? (int) $_POST['aula'] : 0;

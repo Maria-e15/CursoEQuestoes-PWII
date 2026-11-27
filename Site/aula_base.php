@@ -35,10 +35,8 @@ $exercicios_liberados = !empty($_SESSION['video_concluido_' . $aula]) || $ajuste
     <div class="moldura">
         <main class="tela aula-pag">
 
-            <!-- Camada 1: fundo branco + símbolos matemáticos -->
             <div class="simbolos" aria-hidden="true"></div>
 
-            <!-- Camada 2: gradiente lavanda com topo curvo -->
             <svg class="fundo-svg" viewBox="0 0 402 874" aria-hidden="true">
                 <defs>
                     <linearGradient id="grad" gradientUnits="userSpaceOnUse" x1="0" y1="500" x2="0" y2="874">
@@ -50,7 +48,6 @@ $exercicios_liberados = !empty($_SESSION['video_concluido_' . $aula]) || $ajuste
                 <path fill="url(#grad)" d="M0,500 C5.7,502.5 23.0,510.8 34.0,515.0 C45.0,519.2 55.3,521.7 66.0,525.0 C76.7,528.3 87.3,531.8 98.0,535.0 C108.7,538.2 119.3,541.7 130.0,544.0 C140.7,546.3 151.2,547.3 162.0,549.0 C172.8,550.7 184.2,553.2 195.0,554.0 C205.8,554.8 216.3,554.5 227.0,554.0 C237.7,553.5 248.3,553.0 259.0,551.0 C269.7,549.0 280.3,546.3 291.0,542.0 C301.7,537.7 312.2,531.2 323.0,525.0 C333.8,518.8 342.8,511.8 356.0,505.0 C369.2,498.2 394.3,487.5 402.0,484.0 V874 H0 Z"/>
             </svg>
 
-            <!-- Camada 3 -->
             <h1 class="titulo-aula">
                 <span class="n">Aula <?php echo $numero; ?>.</span>
                 <span class="n"><?php echo htmlspecialchars($dados['titulo']); ?></span>
@@ -62,7 +59,6 @@ $exercicios_liberados = !empty($_SESSION['video_concluido_' . $aula]) || $ajuste
                 <img src="imgs/gobackBtn.png" alt="">
             </a>
 
-            <!-- Faixa do material didático (o livro é o botão de download) -->
             <section class="faixa-material">
                 <?php if (!empty($dados['material']) && is_file(__DIR__ . '/' . $dados['material'])): ?>
                     <a class="material" href="<?php echo htmlspecialchars($dados['material']); ?>" download
@@ -78,7 +74,6 @@ $exercicios_liberados = !empty($_SESSION['video_concluido_' . $aula]) || $ajuste
                 <p>Acompanhe o<br>material didático<br>desta aula!</p>
             </section>
 
-            <!-- Botão dos exercícios: bloqueado até o fim do vídeo -->
             <a id="btn-exercicios"
                class="btn-exercicios<?php echo $exercicios_liberados ? '' : ' bloqueado'; ?>"
                href="questoes.php?aula=<?php echo $aula; ?>"
@@ -97,8 +92,7 @@ $exercicios_liberados = !empty($_SESSION['video_concluido_' . $aula]) || $ajuste
                     Termine a videoaula e<br>desbloqueie a lista de exercícios
                 <?php endif; ?>
             </p>
-
-            <!-- Vídeo -->
+            
             <section class="moldura-video">
                 <div class="tela-video">
                     <div id="player" data-video-id="<?php echo htmlspecialchars($id_video); ?>"

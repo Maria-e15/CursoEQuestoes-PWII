@@ -6,7 +6,7 @@ $aula = isset($_POST['aula']) ? (int) $_POST['aula'] : 0;
 
 $chave = 'questoes_aula_' . $aula;
 
-// Verifica se existem questões na sessão
+
 if ($aula < 1 || $aula > 5 || !isset($_SESSION[$chave])) {
     die('Não foi possível corrigir as questões.');
 }
@@ -14,7 +14,7 @@ if ($aula < 1 || $aula > 5 || !isset($_SESSION[$chave])) {
 $questoes  = $_SESSION[$chave];
 $respostas = $_POST['respostas'] ?? [];
 $acertos   = 0;
-$erros     = []; // números (1, 2, 3) das questões erradas
+$erros     = []; 
 
 foreach ($questoes as $indice => $questao) {
 
@@ -30,7 +30,7 @@ foreach ($questoes as $indice => $questao) {
     }
 }
 
-// Aula concluída = vídeo assistido + exercícios respondidos
+
 $_SESSION['aula_concluida_' . $aula] = true;
 $_SESSION['resultado_aula_' . $aula] = ['acertos' => $acertos, 'total' => count($questoes), 'erros' => $erros];
 

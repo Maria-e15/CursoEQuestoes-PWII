@@ -1,3 +1,13 @@
+<!--DECLARAÇÃO DE USO DE IA:
+  Ferramentas utilizadas: ClaudeAI e ChatGPT;
+
+  Aplicações: 
+- Programação do design (animações, alinhamento de elementos, barra de rolagem, gradientes, mensagens de aviso, etc.), 
+- Programação PHP (conexão com as questões do banco de dados; permissão de acesso às questões após término das videoaulas)
+-->
+
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -12,10 +22,8 @@
     <div class="moldura">
         <main class="tela inicio">
 
-            <!-- Camada 1: fundo branco + símbolos matemáticos -->
             <div class="simbolos" aria-hidden="true"></div>
 
-            <!-- Camada 2: gradiente branco → D4D1FE -->
             <svg class="fundo-svg" viewBox="0 0 402 874" aria-hidden="true">
                 <defs>
                     <linearGradient id="grad" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="490">
@@ -30,7 +38,6 @@
                 </path>
             </svg>
 
-            <!-- Camada 3: onda superior, logo, nome, texto e botões -->
             <img class="onda-topo" src="imgs/waveScreen1.png" alt="">
             <img class="logo-curso" src="imgs/logo.png" alt="Logotipo InterseC">
             <h1 class="nome-curso">InterseC</h1>
@@ -57,7 +64,7 @@
     </div>
     <script src="style/escala.js"></script>
     <script>
-        // Quem prefere menos movimento (configuração do sistema) vê a onda parada.
+
         if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
             var svg = document.querySelector('.fundo-svg');
             if (svg && svg.pauseAnimations) svg.pauseAnimations();

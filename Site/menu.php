@@ -2,14 +2,14 @@
 
 session_start();
 
-// A página nunca deve ser reaproveitada do cache do navegador (o estado dos botões muda)
+
 header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
 
-// Dados das aulas (config/aulas.php) e chaves de teste (config/ajustes.php)
+
 $aulas   = require __DIR__ . '/config/aulas.php';
 $ajustes = require __DIR__ . '/config/ajustes.php';
 
-// Aulas concluídas (marcadas em corrigir.php) e a próxima a assistir
+
 $concluidas = 0;
 $proxima = 0;
 $concluida = [];
@@ -25,7 +25,7 @@ if ($proxima === 0) {
     $proxima = 1;
 }
 
-// A avaliação final só abre depois das cinco aulas
+
 $avaliacao_liberada = $ajustes['liberar_avaliacao_para_teste'] || ($concluidas === count($aulas));
 
 if (isset($_GET['diagnostico'])) {
@@ -55,21 +55,20 @@ if (isset($_GET['diagnostico'])) {
     <div class="moldura">
         <main class="tela menu">
 
-            <!-- Página rolável: cabeçalho, aulas, avaliação final e referências -->
+          
             <div class="pagina">
                 <div class="pagina-conteudo">
 
-                    <!-- Camada 1: fundo branco + símbolos matemáticos -->
+                    
                     <div class="simbolos" aria-hidden="true"></div>
 
-                    <!-- Camada 2: gradiente lavanda (topo curvo + corpo até o fim da página) -->
                     <svg class="fundo-svg" viewBox="0 0 402 874" aria-hidden="true">
                         <path fill="#D4D1FE" d="M0,523 C7.2,521.5 28.7,519.3 43.0,514.0 C57.3,508.7 71.7,498.7 86.0,491.0 C100.3,483.3 114.7,474.2 129.0,468.0 C143.3,461.8 157.8,457.0 172.0,454.0 C186.2,451.0 199.8,449.5 214.0,450.0 C228.2,450.5 242.7,453.5 257.0,457.0 C271.3,460.5 285.7,466.0 300.0,471.0 C314.3,476.0 328.7,482.0 343.0,487.0 C357.3,492.0 376.2,497.8 386.0,501.0 C395.8,504.2 399.3,505.2 402.0,506.0 V874 H0 Z"/>
                     </svg>
                     <div class="lavanda-corpo" aria-hidden="true"></div>
                     <div class="simbolos simbolos-sobre" aria-hidden="true"></div>
 
-                    <!-- Camada 3: onda, logo, título, texto curvo e aulas -->
+                   
                     <img class="onda-menu" src="imgs/wave.png" alt="">
 
                     <a class="pilula" href="index.html" aria-label="InterseC – voltar ao início">
@@ -129,7 +128,7 @@ if (isset($_GET['diagnostico'])) {
                         </section>
                     </div>
 
-                    <!-- Barra de rolagem personalizada (acompanha o conteúdo, como no design) -->
+                 
                     <div class="barra" aria-hidden="true"><div class="polegar"></div></div>
 
                 </div>
@@ -141,7 +140,7 @@ if (isset($_GET['diagnostico'])) {
     <script src="style/scrollbar.js"></script>
     <script src="style/aviso.js"></script>
     <script>
-        // Se o navegador mostrar esta página a partir do histórico (botão "voltar"), recarrega para refletir o progresso
+        
         window.addEventListener('pageshow', function (e) { if (e.persisted) location.reload(); });
     </script>
     <script src="style/curva.js"></script>

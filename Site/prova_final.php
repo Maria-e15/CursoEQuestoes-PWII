@@ -5,7 +5,7 @@ require_once 'config/conexao.php';
 
 $ajustes = require __DIR__ . '/config/ajustes.php';
 
-// Verifica se as cinco aulas foram concluídas
+
 if (!$ajustes['liberar_avaliacao_para_teste']) {
     for ($i = 1; $i <= 5; $i++) {
         if (empty($_SESSION['aula_concluida_' . $i])) {
@@ -15,14 +15,14 @@ if (!$ajustes['liberar_avaliacao_para_teste']) {
     }
 }
 
-// "Começar agora" (startAvaliacao.php) abre uma tentativa nova: novas questões e cronômetro zerado
+
 if (isset($_GET['novo'])) {
     unset($_SESSION['questoes_prova_final'], $_SESSION['prova_inicio']);
     header('Location: prova_final.php');
     exit;
 }
 
-// Sorteia as 10 questões apenas uma vez
+
 if (!isset($_SESSION['questoes_prova_final'])) {
 
     $sql = 'SELECT * FROM questoes
@@ -35,14 +35,13 @@ if (!isset($_SESSION['questoes_prova_final'])) {
     $_SESSION['questoes_prova_final'] = $consulta->fetchAll(PDO::FETCH_ASSOC);
 }
 
-// Recupera as questões sorteadas
 $questoes = $_SESSION['questoes_prova_final'];
 
 if (count($questoes) < 10) {
     die('Não existem questões suficientes para a prova final.');
 }
 
-// Cronômetro: começa na primeira vez que a prova é aberta e não para (nem ao recarregar a página)
+
 if (!isset($_SESSION['prova_inicio'])) {
     $_SESSION['prova_inicio'] = microtime(true);
 }
@@ -69,17 +68,17 @@ $alternativas = ['a', 'b', 'c', 'd', 'e'];
             <div class="pagina">
                 <div class="pagina-conteudo">
 
-                    <!-- Camada 1: fundo branco + símbolos matemáticos -->
+              
                     <div class="simbolos" aria-hidden="true"></div>
 
-                    <!-- Camada 2: gradiente lavanda (topo curvo + corpo até o fim da página) -->
+                   
                     <svg class="fundo-svg" viewBox="0 0 402 874" aria-hidden="true">
                         <path fill="#D4D1FE" d="M0,564 C9.8,566.7 39.3,574.7 59.0,580.0 C78.7,585.3 98.3,591.8 118.0,596.0 C137.7,600.2 157.3,603.5 177.0,605.0 C196.7,606.5 216.3,607.2 236.0,605.0 C255.7,602.8 275.3,599.8 295.0,592.0 C314.7,584.2 336.2,567.5 354.0,558.0 C371.8,548.5 394.0,538.8 402.0,535.0 V874 H0 Z"/>
                     </svg>
                     <div class="lavanda-corpo lavanda-q" aria-hidden="true"></div>
                     <div class="simbolos simbolos-sobre" aria-hidden="true"></div>
 
-                    <!-- Camada 3: título, seta e símbolos em movimento sobre a curva -->
+                    
                     <h1 class="titulo-prova">
                         <em>Responda<br>corretamente<br>ao menos 7</em><br>questões e<br>finalize o curso!
                     </h1>

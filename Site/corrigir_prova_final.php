@@ -23,10 +23,10 @@ foreach ($questoes as $questao) {
     }
 }
 
-// Guarda o resultado para a tela de resultados finais
+
 $_SESSION['resultado_prova_final'] = ['acertos' => $acertos, 'total' => count($questoes)];
 
-// Encerra o cronômetro desta tentativa
+
 unset($_SESSION['prova_inicio']);
 
 header('Location: resultado_final.php');
