@@ -1,15 +1,17 @@
 <?php
 
-// Conteúdo da página "Sobre". Para trocar os textos, edite este vetor.
-$lorem_1 = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vitae fermentum diam. Cras sollicitudin magna a felis convallis commodo. Curabitur sagittis odio a est hendrerit vulputate. Donec metus augue, consequat eget purus et, finibus ornare turpis. Etiam et augue nibh. Donec facilisis nisi elit, eget venenatis lorem ornare eu, pellentesque, sollicitudin purus quis, condimentum est. Donec in felis ac risus rutrum iaculis vel sit amet ante. In hac habitasse platea dictumst. Vivamus ultrices imperdiet dignissim. Vestibulum lobortis odio mi. Praesent varius congue luctus.';
 
-$lorem_2 = 'Nunc sollicitudin nibh quis dapibus cursus. Quisque vel ligula vehicula, cursus nisi vel, scelerisque est. Suspendisse faucibus egestas sapien, quis vulputate arcu ullamcorper a. Cras eleifend bibendum ligula. Ut eu suscipit arcu, at condimentum turpis. Nulla feugiat dolor eu sollicitudin hendrerit. Nullam interdum scelerisque egestas. Curabitur magna lacus, facilisis at dui vel, auctor malesuada massa.';
+$sobreCurso = 'O curso de Probabilidade foi desenvolvido para ensinar, de maneira simples e prática, os principais conceitos relacionados à probabilidade e às chances de ocorrência de determinados acontecimentos. Ao longo de cinco aulas, você aprenderá os fundamentos do conteúdo, conhecerá exemplos do cotidiano e resolverá atividades para colocar seus conhecimentos em prática. Ao final do curso, haverá uma avaliação para testar o que foi aprendido durante as aulas e verificar seu desempenho.';
 
-// O título aceita <em> para destacar uma palavra em azul. "menor" = primeiro título (mais estreito, por causa da seta).
+$paraQuem = 'Este curso é destinado a estudantes e a todas as pessoas que desejam aprender ou aprimorar seus conhecimentos sobre Probabilidade. Não é necessário ter conhecimentos avançados sobre o assunto, pois o conteúdo foi organizado para facilitar o aprendizado desde os conceitos básicos. Se você tem curiosidade em entender as chances de algo acontecer e como a probabilidade está presente no nosso dia a dia, este curso é para você!';
+
+$porTras = 'Este projeto foi desenvolvido por Henrique Suhr, Maria Eduarda Nascimento dos Santos e Mariana da Silva Gonçalves, estudantes do 2º ano do Ensino Médio integrado ao curso técnico de Desenvolvimento de Sistemas da ETEC Vasco Antônio Venchiarutti. O curso foi criado como parte de um projeto educacional, unindo tecnologia e educação com o objetivo de compartilhar conhecimentos matemáticos de forma acessível, interativa e interessante.';
+
+
 $secoes = [
-    ['titulo' => 'O que é o<br>curso<br><em>InterseC?</em>', 'menor' => true,  'texto' => $lorem_1],
-    ['titulo' => 'Para <em>quem</em> é<br>o curso?',          'menor' => false, 'texto' => $lorem_2],
-    ['titulo' => 'Quem está<br>por trás?',                    'menor' => false, 'texto' => $lorem_2],
+    ['titulo' => 'O que é o<br>curso<br><em>InterseC?</em>', 'menor' => true,  'texto' => $sobreCurso],
+    ['titulo' => 'Para <em>quem</em> é<br>o curso?',          'menor' => false, 'texto' => $paraQuem],
+    ['titulo' => 'Quem está<br>por trás?',                    'menor' => false, 'texto' => $porTras],
 ];
 
 ?>
